@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="About Ikebana Box — a flower subscription and workshop service rooted in the Sogetsu school of ikebana. Based in Toronto, Canada.">
+  <title>Ikebana Box — About</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ============================================================
+       Navigation
+  ============================================================ -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">flowerscan</a>
+      <ul class="nav__links" role="list">
+        <li><a href="subscription.html" class="nav__link">Ikebana Box</a></li>
+        <li><a href="workshops.html" class="nav__link">Workshops</a></li>
+        <li><a href="gallery.html" class="nav__link">Gallery</a></li>
+        <li><a href="about.html" class="nav__link nav__link--active">About</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <!-- ============================================================
+       Hero — minimal
+  ============================================================ -->
+  <section class="hero hero--minimal" aria-labelledby="about-heading">
+    <div class="container">
+      <span class="label">About</span>
+      <h1 id="about-heading" style="margin-top: 1rem; margin-bottom: 0; max-width: 12ch;">
+        The person behind the box.
+      </h1>
+    </div>
+  </section>
+
+  <hr class="divider" style="margin: 0; border-top: 1px solid var(--color-border);">
+
+
+  <!-- ============================================================
+       About — Portrait + Text
+  ============================================================ -->
+  <section class="section" aria-label="About the founder">
+    <div class="container">
+      <div class="about-layout">
+
+        <!-- Portrait placeholder -->
+        <div class="about-layout__image">
+          <div class="img-placeholder img-placeholder--portrait" role="img" aria-label="Portrait photo placeholder">
+            <span class="img-placeholder__label">Portrait</span>
+          </div>
+        </div>
+
+        <!-- Text -->
+        <div class="about-layout__text">
+          <h2 style="margin-bottom: 1.5rem;">About</h2>
+
+          <p>
+            I'm a PhD student in Toronto with a practice in ikebana rooted
+            in the Sogetsu school. Ikebana Box grew from a simple question:
+            what if more people could experience the quiet focus of arranging
+            flowers at home?
+          </p>
+
+          <p>
+            Every box is sourced by hand from Toronto flower markets.
+            Every instruction card is written for the specific stems in
+            that delivery — not a generic guide, but a conversation with
+            the material in front of you.
+          </p>
+
+          <p style="color: var(--color-muted);">
+            [Your name] &nbsp;&middot;&nbsp; Toronto, ON
+          </p>
+
+          <hr class="divider">
+
+          <!-- Philosophy -->
+          <h3 style="margin-bottom: 1rem;">Wabi-sabi.</h3>
+          <p>
+            Wabi-sabi teaches us to find beauty in the imperfect and impermanent.
+            Every arrangement is unrepeatable. Every stem will fade.
+            That is not a flaw — it is the point.
+          </p>
+          <p>
+            Mono no aware: the bittersweet awareness of passing things.
+            A flower arrangement is a small practice in that awareness —
+            made, admired, released.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" style="margin: 0; border-top: 1px solid var(--color-border);">
+
+
+  <!-- ============================================================
+       CTA strip
+  ============================================================ -->
+  <section class="section section--sm" aria-label="Get started">
+    <div class="container">
+      <div class="callout">
+        <div>
+          <div class="callout__label">Ready to begin?</div>
+          <div class="callout__text">Your first box is waiting.</div>
+        </div>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <a href="subscription.html" class="btn btn--primary btn--sm">Subscribe</a>
+          <a href="workshops.html" class="btn btn--muted btn--sm">Join a Workshop</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       Footer
+  ============================================================ -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer__inner">
+      <div class="footer__main">
+        <div>
+          <div class="footer__brand">Ikebana Box by flowerscan</div>
+          <div class="footer__tagline">Toronto, ON</div>
+        </div>
+        <div class="footer__links">
+          <a href="https://instagram.com" class="icon-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
+            </svg>
+            Instagram
+          </a>
+          <a href="mailto:hello@flowerscan.ca" class="icon-link" aria-label="Email us">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <polyline points="2,4 12,13 22,4"/>
+            </svg>
+            hello@flowerscan.ca
+          </a>
+        </div>
+      </div>
+      <div class="footer__bottom">&copy; 2025 flowerscan.ca</div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

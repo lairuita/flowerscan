@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ikebana Box — Thank You</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ============================================================
+       Navigation
+  ============================================================ -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">flowerscan</a>
+      <ul class="nav__links" role="list">
+        <li><a href="subscription.html" class="nav__link">Ikebana Box</a></li>
+        <li><a href="workshops.html" class="nav__link">Workshops</a></li>
+        <li><a href="gallery.html" class="nav__link">Gallery</a></li>
+        <li><a href="about.html" class="nav__link">About</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <!-- ============================================================
+       Confirmation — content injected by JS based on ?type=
+  ============================================================ -->
+  <main class="confirmation" aria-live="polite">
+    <div class="confirmation__inner">
+      <div class="confirmation__eyebrow" id="confirmation-eyebrow"></div>
+      <h1 class="confirmation__title" id="confirmation-title"></h1>
+      <p class="confirmation__body" id="confirmation-body"></p>
+      <a href="index.html" class="confirmation__back">&larr; Back to home</a>
+    </div>
+  </main>
+
+
+  <script>
+    (function () {
+      var params  = new URLSearchParams(window.location.search);
+      var type    = params.get('type');
+
+      var eyebrow = document.getElementById('confirmation-eyebrow');
+      var title   = document.getElementById('confirmation-title');
+      var body    = document.getElementById('confirmation-body');
+
+      if (type === 'workshop') {
+        eyebrow.textContent = 'Workshop booked';
+        title.textContent   = "You're booked.";
+        body.textContent    = "We'll send everything you need to know to your inbox — "
+                            + "date, location, what to bring. See you soon.";
+      } else {
+        // Default: subscription (starter or recurring)
+        eyebrow.textContent = 'Subscription confirmed';
+        title.textContent   = "You're in.";
+        body.textContent    = "Your first Ikebana Box will arrive within the next few days. "
+                            + "Check your inbox for a welcome note with everything you need to know.";
+      }
+    })();
+  </script>
+
+</body>
+</html>

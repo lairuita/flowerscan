@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Subscribe to Ikebana Box — bi-weekly seasonal stems with ikebana guidance, delivered to your door in Toronto. Starter box $65. Recurring $55 per delivery.">
+  <title>Ikebana Box — Subscribe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ============================================================
+       Navigation
+  ============================================================ -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">flowerscan</a>
+      <ul class="nav__links" role="list">
+        <li><a href="subscription.html" class="nav__link nav__link--active">Ikebana Box</a></li>
+        <li><a href="workshops.html" class="nav__link">Workshops</a></li>
+        <li><a href="gallery.html" class="nav__link">Gallery</a></li>
+        <li><a href="about.html" class="nav__link">About</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <!-- ============================================================
+       Hero — minimal
+  ============================================================ -->
+  <section class="hero hero--minimal" aria-labelledby="subscription-heading">
+    <div class="container">
+      <span class="label">Ikebana Box</span>
+      <h1 id="subscription-heading" style="margin-top: 1rem; margin-bottom: 1.25rem; max-width: 18ch;">
+        A bi-weekly ritual.
+      </h1>
+      <p class="hero__subtitle" style="margin-bottom: 0;">
+        Seasonal stems. Ikebana guidance. Delivered to your door in Toronto.
+      </p>
+    </div>
+  </section>
+
+  <hr class="divider" style="margin: 0; border-top: 1px solid var(--color-border);">
+
+
+  <!-- ============================================================
+       How It Works
+  ============================================================ -->
+  <section class="section" aria-labelledby="how-heading">
+    <div class="container">
+      <span class="label">How it works</span>
+      <h2 id="how-heading" style="margin-top: 1rem; margin-bottom: 3rem;">Three steps.</h2>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step__number">01</div>
+          <h3 class="step__title">We source</h3>
+          <p class="step__body">
+            Seasonal stems are handpicked from Toronto flower markets,
+            curated for ikebana composition — line, asymmetry, space.
+          </p>
+        </div>
+        <div class="step">
+          <div class="step__number">02</div>
+          <h3 class="step__title">We deliver</h3>
+          <p class="step__body">
+            Your Ikebana Box arrives every two weeks, timed to the
+            natural life of your last arrangement. Never too soon.
+          </p>
+        </div>
+        <div class="step">
+          <div class="step__number">03</div>
+          <h3 class="step__title">You arrange</h3>
+          <p class="step__body">
+            Follow the included instruction card or video guide
+            to compose your arrangement. No experience necessary.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" style="margin: 0; border-top: 1px solid var(--color-border);">
+
+
+  <!-- ============================================================
+       Pricing
+  ============================================================ -->
+  <section class="section" aria-labelledby="pricing-heading">
+    <div class="container">
+      <span class="label">Pricing</span>
+      <h2 id="pricing-heading" style="margin-top: 1rem; margin-bottom: 3rem;">Choose your box.</h2>
+
+      <div class="grid-2" style="align-items: start;">
+
+        <!-- Starter Box -->
+        <div class="card">
+          <div class="card__label">First-time subscribers</div>
+          <h3 class="card__title">Starter Box</h3>
+          <div class="card__price">$65 <span style="font-size: var(--text-base); color: var(--color-muted); font-family: var(--font-body); font-weight: var(--weight-light);">CAD</span></div>
+          <p class="card__note">One-time. Everything you need to begin.</p>
+          <ul class="card__list" aria-label="Starter Box includes">
+            <li>5–7 seasonal stems, curated for ikebana</li>
+            <li>Kenzan (metal pin frog)</li>
+            <li>Ceramic vessel</li>
+            <li>Arrangement instruction card</li>
+          </ul>
+          <button
+            class="btn btn--primary"
+            style="width: 100%;"
+            data-checkout-type="starter"
+            aria-label="Start with the Starter Box — $65 CAD"
+          >
+            Start with the Starter Box
+          </button>
+        </div>
+
+        <!-- Recurring Subscription -->
+        <div class="card">
+          <div class="card__label">Bi-weekly subscription</div>
+          <h3 class="card__title">Ikebana Box</h3>
+          <div class="card__price">$55 <span style="font-size: var(--text-base); color: var(--color-muted); font-family: var(--font-body); font-weight: var(--weight-light);">CAD / delivery</span></div>
+          <p class="card__note">Recurring. Pause or cancel anytime.</p>
+          <ul class="card__list" aria-label="Ikebana Box includes">
+            <li>5–7 seasonal stems, curated for ikebana</li>
+            <li>Arrangement instruction card</li>
+            <li>Flower care guide</li>
+            <li>Access to your subscriber portal</li>
+          </ul>
+          <button
+            class="btn btn--secondary"
+            style="width: 100%;"
+            data-checkout-type="subscription"
+            aria-label="Subscribe to Ikebana Box — $55 CAD per delivery"
+          >
+            Subscribe
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Delivery note -->
+      <p class="note" style="margin-top: 1.5rem;">
+        Delivery within Toronto. Pickup available at no extra charge.
+        Delivery fee: $8 CAD.
+      </p>
+    </div>
+  </section>
+
+  <hr class="divider" style="margin: 0; border-top: 1px solid var(--color-border);">
+
+
+  <!-- ============================================================
+       Inline FAQ Teaser
+  ============================================================ -->
+  <section class="section section--sm" aria-labelledby="faq-inline-heading">
+    <div class="container">
+      <span class="label">Questions</span>
+      <h2 id="faq-inline-heading" style="margin-top: 1rem; margin-bottom: 2.5rem;">A few things people ask.</h2>
+
+      <div class="faq-list" role="list">
+
+        <div class="faq-item" role="listitem">
+          <button class="faq-item__question" aria-expanded="false">
+            What is a kenzan?
+            <span class="faq-item__icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq-item__answer">
+            A kenzan is a metal pin frog used in ikebana to hold stems in place.
+            It comes in your Starter Box and, with care, lasts for years.
+          </div>
+        </div>
+
+        <div class="faq-item" role="listitem">
+          <button class="faq-item__question" aria-expanded="false">
+            Can I pause my subscription?
+            <span class="faq-item__icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq-item__answer">
+            Yes. You manage everything — pausing, skipping, cancelling —
+            through your subscriber portal, powered by Stripe.
+            No emails required.
+          </div>
+        </div>
+
+        <div class="faq-item" role="listitem">
+          <button class="faq-item__question" aria-expanded="false">
+            What flowers will I receive?
+            <span class="faq-item__icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq-item__answer">
+            Stems are seasonal and change with every delivery.
+            You'll always know what's coming via your delivery email,
+            sent a day or two before your box arrives.
+          </div>
+        </div>
+
+      </div>
+
+      <p style="margin-top: 2rem;">
+        <a href="faq.html" class="btn btn--muted btn--sm">All questions</a>
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       Footer
+  ============================================================ -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer__inner">
+      <div class="footer__main">
+        <div>
+          <div class="footer__brand">Ikebana Box by flowerscan</div>
+          <div class="footer__tagline">Toronto, ON</div>
+        </div>
+        <div class="footer__links">
+          <a href="https://instagram.com" class="icon-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
+            </svg>
+            Instagram
+          </a>
+          <a href="mailto:hello@flowerscan.ca" class="icon-link" aria-label="Email us">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <polyline points="2,4 12,13 22,4"/>
+            </svg>
+            hello@flowerscan.ca
+          </a>
+        </div>
+      </div>
+      <div class="footer__bottom">&copy; 2025 flowerscan.ca</div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

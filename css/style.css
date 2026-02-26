@@ -1,0 +1,1075 @@
+/* ============================================================
+   style.css — Ikebana Box Design System
+   flowerscan.ca
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1. Google Fonts Import
+   ------------------------------------------------------------ */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap');
+
+
+/* ------------------------------------------------------------
+   2. CSS Custom Properties (Design Tokens)
+   ------------------------------------------------------------ */
+:root {
+  /* Colors */
+  --color-bg:      #F5F0EA;
+  --color-text:    #2C2C2C;
+  --color-accent:  #8B7355;
+  --color-muted:   #9E9E8F;
+  --color-border:  #DDD8CF;
+
+  /* Typography */
+  --font-heading: 'Cormorant Garamond', serif;
+  --font-body:    'Inter', sans-serif;
+
+  /* Font sizes — fluid scale */
+  --text-xs:   0.75rem;    /* 12px */
+  --text-sm:   0.875rem;   /* 14px */
+  --text-base: 1rem;       /* 16px */
+  --text-md:   1.125rem;   /* 18px */
+  --text-lg:   1.375rem;   /* 22px */
+  --text-xl:   1.75rem;    /* 28px */
+  --text-2xl:  2.25rem;    /* 36px */
+  --text-3xl:  3rem;       /* 48px */
+  --text-4xl:  3.75rem;    /* 60px */
+
+  /* Font weights */
+  --weight-light:   300;
+  --weight-regular: 400;
+  --weight-medium:  500;
+  --weight-semibold: 600;
+
+  /* Spacing */
+  --spacing-section: 6rem;
+  --spacing-xs:  0.5rem;
+  --spacing-sm:  1rem;
+  --spacing-md:  1.5rem;
+  --spacing-lg:  2.5rem;
+  --spacing-xl:  4rem;
+
+  /* Layout */
+  --max-width: 960px;
+  --nav-height: 4rem;
+
+  /* Transitions */
+  --transition: 200ms ease;
+}
+
+
+/* ------------------------------------------------------------
+   3. Reset & Box Model
+   ------------------------------------------------------------ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--weight-light);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+/* ------------------------------------------------------------
+   4. Typography
+   ------------------------------------------------------------ */
+
+/* Headings — Cormorant Garamond, left-aligned by default */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: var(--weight-light);
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+}
+
+h1 { font-size: var(--text-4xl); }
+h2 { font-size: var(--text-3xl); }
+h3 { font-size: var(--text-2xl); }
+h4 { font-size: var(--text-xl); }
+h5 { font-size: var(--text-lg); }
+h6 { font-size: var(--text-md); }
+
+/* Center-align headings only when explicitly needed */
+.heading-center {
+  text-align: center;
+}
+
+/* Body text — Inter */
+p {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--weight-light);
+  line-height: 1.75;
+  max-width: 60ch;
+}
+
+/* Wider prose for full-width text sections */
+p.prose-wide {
+  max-width: 72ch;
+}
+
+/* Small / label text */
+.text-sm   { font-size: var(--text-sm); }
+.text-xs   { font-size: var(--text-xs); }
+.text-muted { color: var(--color-muted); }
+.text-accent { color: var(--color-accent); }
+
+/* Italic heading variant */
+.heading-italic {
+  font-style: italic;
+  font-weight: var(--weight-light);
+}
+
+/* Subheading — small uppercase label */
+.label {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+
+/* ------------------------------------------------------------
+   5. Layout Utilities
+   ------------------------------------------------------------ */
+
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--spacing-md);
+}
+
+.section {
+  padding-block: var(--spacing-section);
+}
+
+.section--sm {
+  padding-block: 3rem;
+}
+
+.section--lg {
+  padding-block: 8rem;
+}
+
+/* Divider line */
+.divider {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin-block: var(--spacing-lg);
+}
+
+/* Grid helpers */
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-lg);
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-lg);
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-md);
+}
+
+/* Flex helpers */
+.flex        { display: flex; }
+.flex-center { display: flex; align-items: center; justify-content: center; }
+.flex-between { display: flex; align-items: center; justify-content: space-between; }
+.flex-gap-sm { gap: var(--spacing-sm); }
+.flex-gap-md { gap: var(--spacing-md); }
+
+
+/* ------------------------------------------------------------
+   6. Navigation
+   ------------------------------------------------------------ */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+  height: var(--nav-height);
+  display: flex;
+  align-items: center;
+}
+
+.nav__inner {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--spacing-md);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav__logo {
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-light);
+  letter-spacing: 0.03em;
+  color: var(--color-text);
+  line-height: 1;
+}
+
+.nav__logo:hover {
+  color: var(--color-accent);
+}
+
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+
+.nav__link {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-light);
+  letter-spacing: 0.04em;
+  color: var(--color-text);
+  transition: color var(--transition);
+}
+
+.nav__link:hover,
+.nav__link--active {
+  color: var(--color-accent);
+}
+
+
+/* ------------------------------------------------------------
+   7. Buttons
+   ------------------------------------------------------------ */
+
+/* Base button — outline style, no rounded corners */
+.btn {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-regular);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.75rem 1.75rem;
+  border: 1px solid currentColor;
+  background: transparent;
+  cursor: pointer;
+  transition: color var(--transition), background-color var(--transition), border-color var(--transition);
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Primary button — accent color */
+.btn--primary {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.btn--primary:hover {
+  background-color: var(--color-accent);
+  color: var(--color-bg);
+}
+
+/* Secondary / ghost button — text color */
+.btn--secondary {
+  color: var(--color-text);
+  border-color: var(--color-text);
+}
+
+.btn--secondary:hover {
+  background-color: var(--color-text);
+  color: var(--color-bg);
+}
+
+/* Muted button */
+.btn--muted {
+  color: var(--color-muted);
+  border-color: var(--color-border);
+}
+
+.btn--muted:hover {
+  border-color: var(--color-muted);
+  color: var(--color-text);
+}
+
+/* Small button variant */
+.btn--sm {
+  font-size: var(--text-xs);
+  padding: 0.5rem 1.25rem;
+}
+
+
+/* ------------------------------------------------------------
+   8. Hero Section
+   ------------------------------------------------------------ */
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 85vh;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.hero__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Slight desaturation per design principles */
+  filter: saturate(0.75);
+}
+
+/* Placeholder when no image is present */
+.hero__image--placeholder {
+  background-color: var(--color-border);
+}
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--spacing-md);
+  padding-bottom: var(--spacing-xl);
+}
+
+.hero__title {
+  font-size: clamp(var(--text-3xl), 6vw, var(--text-4xl));
+  color: var(--color-text);
+  margin-bottom: var(--spacing-sm);
+}
+
+.hero__subtitle {
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  font-weight: var(--weight-light);
+  color: var(--color-text);
+  margin-bottom: var(--spacing-lg);
+  max-width: 42ch;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}
+
+/* Hero variant: minimal (text only, no full-bleed image) */
+.hero--minimal {
+  min-height: auto;
+  padding-block: var(--spacing-xl) var(--spacing-section);
+  background: none;
+}
+
+.hero--minimal .hero__content {
+  position: static;
+  padding-bottom: 0;
+}
+
+.hero--minimal .hero__title {
+  font-size: clamp(var(--text-2xl), 4vw, var(--text-3xl));
+}
+
+
+/* ------------------------------------------------------------
+   9. Cards
+   ------------------------------------------------------------ */
+.card {
+  border: 1px solid var(--color-border);
+  padding: var(--spacing-lg);
+  background-color: var(--color-bg);
+}
+
+.card__label {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-bottom: var(--spacing-sm);
+}
+
+.card__title {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-light);
+  margin-bottom: var(--spacing-xs);
+}
+
+.card__price {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-light);
+  color: var(--color-accent);
+  margin-bottom: var(--spacing-sm);
+}
+
+.card__body {
+  font-size: var(--text-sm);
+  color: var(--color-text);
+  line-height: 1.7;
+  margin-bottom: var(--spacing-md);
+}
+
+.card__list {
+  margin-bottom: var(--spacing-md);
+}
+
+.card__list li {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-light);
+  padding-block: 0.35rem;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+
+.card__list li:first-child {
+  border-top: 1px solid var(--color-border);
+}
+
+.card__note {
+  font-size: var(--text-xs);
+  color: var(--color-muted);
+  font-style: italic;
+  margin-bottom: var(--spacing-md);
+}
+
+/* Workshop date card */
+.card--workshop {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md) var(--spacing-lg);
+}
+
+.card--workshop .card__meta {
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+  margin-top: 0.25rem;
+}
+
+
+/* ------------------------------------------------------------
+   10. Image Placeholders & Photo Grid
+   ------------------------------------------------------------ */
+.img-placeholder {
+  background-color: var(--color-border);
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.img-placeholder--portrait {
+  aspect-ratio: 3 / 4;
+}
+
+.img-placeholder--square {
+  aspect-ratio: 1 / 1;
+}
+
+.img-placeholder--wide {
+  aspect-ratio: 16 / 9;
+}
+
+.img-placeholder__label {
+  font-size: var(--text-xs);
+  color: var(--color-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Photo strip — horizontal scroll */
+.photo-strip {
+  display: flex;
+  gap: var(--spacing-sm);
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: var(--spacing-sm);
+}
+
+.photo-strip::-webkit-scrollbar {
+  display: none;
+}
+
+.photo-strip__item {
+  flex: 0 0 280px;
+  height: 360px;
+  background-color: var(--color-border);
+  overflow: hidden;
+}
+
+.photo-strip__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.75);
+}
+
+/* Gallery grid — masonry-style using CSS columns */
+.gallery-grid {
+  columns: 3;
+  column-gap: var(--spacing-sm);
+}
+
+.gallery-grid__item {
+  break-inside: avoid;
+  margin-bottom: var(--spacing-sm);
+}
+
+.gallery-grid__item img {
+  width: 100%;
+  display: block;
+  filter: saturate(0.75);
+}
+
+.gallery-grid__caption {
+  font-size: var(--text-xs);
+  color: var(--color-muted);
+  letter-spacing: 0.06em;
+  padding-block: 0.5rem;
+}
+
+
+/* ------------------------------------------------------------
+   11. Steps / How It Works
+   ------------------------------------------------------------ */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-lg);
+}
+
+.step__number {
+  font-family: var(--font-heading);
+  font-size: var(--text-4xl);
+  font-weight: var(--weight-light);
+  color: var(--color-border);
+  line-height: 1;
+  margin-bottom: var(--spacing-sm);
+}
+
+.step__title {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-light);
+  margin-bottom: var(--spacing-xs);
+}
+
+.step__body {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-light);
+  color: var(--color-muted);
+  line-height: 1.7;
+}
+
+
+/* ------------------------------------------------------------
+   12. Box Contents / Feature List
+   ------------------------------------------------------------ */
+.feature-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-md);
+  border-top: 1px solid var(--color-border);
+}
+
+.feature-list__item {
+  padding-top: var(--spacing-md);
+}
+
+.feature-list__number {
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  color: var(--color-accent);
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.08em;
+  margin-bottom: var(--spacing-xs);
+}
+
+.feature-list__text {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-light);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+
+/* ------------------------------------------------------------
+   13. FAQ / Accordion
+   ------------------------------------------------------------ */
+.faq-list {
+  width: 100%;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.faq-item:first-child {
+  border-top: 1px solid var(--color-border);
+}
+
+.faq-item__question {
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  padding-block: var(--spacing-md);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-light);
+  color: var(--color-text);
+  transition: color var(--transition);
+}
+
+.faq-item__question:hover {
+  color: var(--color-accent);
+}
+
+.faq-item__icon {
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+  position: relative;
+  color: var(--color-muted);
+}
+
+.faq-item__icon::before,
+.faq-item__icon::after {
+  content: '';
+  position: absolute;
+  background-color: currentColor;
+  transition: transform var(--transition), opacity var(--transition);
+}
+
+/* Horizontal bar */
+.faq-item__icon::before {
+  width: 100%;
+  height: 1px;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+/* Vertical bar */
+.faq-item__icon::after {
+  width: 1px;
+  height: 100%;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+}
+
+.faq-item[open] .faq-item__icon::after,
+.faq-item.is-open .faq-item__icon::after {
+  transform: translateX(-50%) rotate(90deg);
+  opacity: 0;
+}
+
+.faq-item__answer {
+  padding-bottom: var(--spacing-md);
+  font-size: var(--text-base);
+  font-weight: var(--weight-light);
+  line-height: 1.75;
+  color: var(--color-text);
+  max-width: 65ch;
+  display: none;
+}
+
+.faq-item.is-open .faq-item__answer {
+  display: block;
+}
+
+/* FAQ group heading */
+.faq-group {
+  margin-top: var(--spacing-xl);
+}
+
+.faq-group:first-child {
+  margin-top: 0;
+}
+
+.faq-group__title {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-bottom: var(--spacing-sm);
+}
+
+
+/* ------------------------------------------------------------
+   14. Workshop Teaser / Callout
+   ------------------------------------------------------------ */
+.callout {
+  border: 1px solid var(--color-border);
+  padding: var(--spacing-md) var(--spacing-lg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+}
+
+.callout__label {
+  font-size: var(--text-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-bottom: 0.25rem;
+}
+
+.callout__text {
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-light);
+}
+
+
+/* ------------------------------------------------------------
+   15. Footer
+   ------------------------------------------------------------ */
+.footer {
+  border-top: 1px solid var(--color-border);
+  padding-block: var(--spacing-lg);
+  margin-top: var(--spacing-section);
+}
+
+.footer__inner {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--spacing-md);
+}
+
+.footer__main {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-lg);
+  padding-bottom: var(--spacing-lg);
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: var(--spacing-sm);
+}
+
+.footer__brand {
+  font-family: var(--font-heading);
+  font-size: var(--text-md);
+  font-weight: var(--weight-light);
+}
+
+.footer__tagline {
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+  margin-top: 0.25rem;
+}
+
+.footer__links {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.footer__link {
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+  transition: color var(--transition);
+}
+
+.footer__link:hover {
+  color: var(--color-text);
+}
+
+.footer__bottom {
+  font-size: var(--text-xs);
+  color: var(--color-muted);
+}
+
+/* Icon link (Instagram, email) */
+.icon-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+  transition: color var(--transition);
+}
+
+.icon-link:hover {
+  color: var(--color-text);
+}
+
+.icon-link svg {
+  width: 1rem;
+  height: 1rem;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+
+/* ------------------------------------------------------------
+   16. Inline Note / Small Print
+   ------------------------------------------------------------ */
+.note {
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+  font-style: italic;
+  line-height: 1.6;
+}
+
+.note a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  color: inherit;
+}
+
+.note a:hover {
+  color: var(--color-text);
+}
+
+
+/* ------------------------------------------------------------
+   17. Success / Confirmation Page
+   ------------------------------------------------------------ */
+.confirmation {
+  min-height: calc(100vh - var(--nav-height));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xl) var(--spacing-md);
+}
+
+.confirmation__inner {
+  max-width: 520px;
+  width: 100%;
+}
+
+.confirmation__eyebrow {
+  font-size: var(--text-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-bottom: var(--spacing-md);
+}
+
+.confirmation__title {
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-light);
+  margin-bottom: var(--spacing-md);
+}
+
+.confirmation__body {
+  font-size: var(--text-base);
+  font-weight: var(--weight-light);
+  line-height: 1.75;
+  color: var(--color-muted);
+  margin-bottom: var(--spacing-lg);
+  max-width: 45ch;
+}
+
+.confirmation__back {
+  font-size: var(--text-sm);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  color: var(--color-muted);
+  transition: color var(--transition);
+}
+
+.confirmation__back:hover {
+  color: var(--color-text);
+}
+
+
+/* ------------------------------------------------------------
+   18. About Page — Portrait + Text
+   ------------------------------------------------------------ */
+.about-layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: var(--spacing-xl);
+  align-items: start;
+}
+
+.about-layout__image .img-placeholder {
+  aspect-ratio: 3 / 4;
+}
+
+.about-layout__text h2 {
+  margin-bottom: var(--spacing-md);
+}
+
+.about-layout__text p + p {
+  margin-top: var(--spacing-md);
+}
+
+
+/* ------------------------------------------------------------
+   19. Responsive
+   ------------------------------------------------------------ */
+
+/* Tablet */
+@media (max-width: 768px) {
+  :root {
+    --spacing-section: 4rem;
+  }
+
+  h1 { font-size: var(--text-3xl); }
+  h2 { font-size: var(--text-2xl); }
+
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .steps {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+
+  .feature-list {
+    grid-template-columns: 1fr;
+  }
+
+  .callout {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer__main {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  .about-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .about-layout__image .img-placeholder {
+    aspect-ratio: 4 / 3;
+  }
+
+  .gallery-grid {
+    columns: 2;
+  }
+
+  .card--workshop {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  :root {
+    --spacing-section: 3rem;
+  }
+
+  h1 { font-size: var(--text-2xl); }
+  h2 { font-size: var(--text-xl); }
+
+  .nav__links {
+    gap: var(--spacing-md);
+  }
+
+  .hero {
+    min-height: 75vh;
+  }
+
+  .hero__actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero__actions .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .gallery-grid {
+    columns: 1;
+  }
+
+  .photo-strip__item {
+    flex: 0 0 220px;
+    height: 280px;
+  }
+
+  .confirmation__title {
+    font-size: var(--text-2xl);
+  }
+}
