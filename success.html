@@ -7,6 +7,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Gentle fade-in after arriving from the payment modal */
+    @keyframes confirmFadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .confirmation__inner {
+      animation: confirmFadeIn 0.8s ease forwards;
+    }
+  </style>
 </head>
 <body>
 
@@ -34,7 +44,10 @@
       <div class="confirmation__eyebrow" id="confirmation-eyebrow"></div>
       <h1 class="confirmation__title" id="confirmation-title"></h1>
       <p class="confirmation__body" id="confirmation-body"></p>
-      <a href="index.html" class="confirmation__back">&larr; Back to home</a>
+      <div style="display: flex; flex-direction: column; gap: 1rem; align-items: flex-start;">
+        <a href="index.html" class="confirmation__back">&larr; Back to home</a>
+        <a id="confirmation-secondary" href="#" class="btn btn--muted btn--sm" style="display:none;"></a>
+      </div>
     </div>
   </main>
 
@@ -44,21 +57,38 @@
       var params  = new URLSearchParams(window.location.search);
       var type    = params.get('type');
 
-      var eyebrow = document.getElementById('confirmation-eyebrow');
-      var title   = document.getElementById('confirmation-title');
-      var body    = document.getElementById('confirmation-body');
+      var eyebrow    = document.getElementById('confirmation-eyebrow');
+      var title      = document.getElementById('confirmation-title');
+      var body       = document.getElementById('confirmation-body');
+      var secondary  = document.getElementById('confirmation-secondary');
 
       if (type === 'workshop') {
-        eyebrow.textContent = 'Workshop booked';
-        title.textContent   = "You're booked.";
-        body.textContent    = "We'll send everything you need to know to your inbox — "
-                            + "date, location, what to bring. See you soon.";
+        eyebrow.textContent    = 'Workshop booked';
+        title.textContent      = "You're booked.";
+        body.textContent       = "We'll send everything you need to know to your inbox — "
+                               + "date, location, what to bring. See you soon.";
+        secondary.textContent  = 'Browse upcoming workshops';
+        secondary.href         = 'workshops.html';
+        secondary.style.display = 'inline-block';
+
+      } else if (type === 'starter') {
+        eyebrow.textContent    = 'Starter box confirmed';
+        title.textContent      = "You're in.";
+        body.textContent       = "Your first Ikebana Box will arrive within the next few days. "
+                               + "Check your inbox for a welcome note with everything you need to know.";
+        secondary.textContent  = 'Learn about your box';
+        secondary.href         = 'subscription.html';
+        secondary.style.display = 'inline-block';
+
       } else {
-        // Default: subscription (starter or recurring)
-        eyebrow.textContent = 'Subscription confirmed';
-        title.textContent   = "You're in.";
-        body.textContent    = "Your first Ikebana Box will arrive within the next few days. "
-                            + "Check your inbox for a welcome note with everything you need to know.";
+        // subscription (recurring)
+        eyebrow.textContent    = 'Subscription confirmed';
+        title.textContent      = "You're in.";
+        body.textContent       = "Your first Ikebana Box will arrive within the next few days. "
+                               + "Check your inbox for a welcome note with everything you need to know.";
+        secondary.textContent  = 'Read the FAQ';
+        secondary.href         = 'faq.html';
+        secondary.style.display = 'inline-block';
       }
     })();
   </script>

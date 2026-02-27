@@ -416,6 +416,23 @@ p.prose-wide {
   gap: var(--spacing-sm);
 }
 
+/* Cycling phrase — wabi-sabi text animation */
+.hero__phrase {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-light);
+  font-style: italic;
+  letter-spacing: 0.2em;
+  color: var(--color-muted);
+  text-transform: lowercase;
+  opacity: 0;
+  transition: opacity 1s ease;
+  margin-bottom: 1.75rem;
+  min-height: 1.4em;   /* reserve space so layout doesn't shift */
+  user-select: none;
+}
+
 /* Hero variant: minimal (text only, no full-bleed image) */
 .hero--minimal {
   min-height: auto;

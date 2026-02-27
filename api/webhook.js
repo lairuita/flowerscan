@@ -1,52 +1,64 @@
 // /api/webhook.js
-// Vercel serverless function — handles Stripe webhook events.
+// Vercel serverless function — post-payment processor.
 //
-// Listens for: checkout.session.completed
-//   - subscription / starter → write to Airtable Subscribers + send welcome email
-//   - workshop               → write to Airtable Workshop Bookings + send confirmation email
+// Called by the frontend after HelcimPay.js fires a SUCCESS event.
 //
-// Stripe requires the raw request body for signature verification,
-// so we disable Vercel's default body parsing via the config export.
+// POST body: {
+//   transactionData: object,   // from event.data.eventMessage.data
+//   hash:            string,   // from event.data.eventMessage.hash
+//   secretToken:     string,   // stored on frontend from init response
+//   type:            string,   // "starter" | "subscription" | "workshop"
+//   workshopDate?:   string,   // "YYYY-MM-DD" for workshops
+// }
+// Response: { ok: true }
 
-const stripe  = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const crypto     = require('crypto');
+const { google } = require('googleapis');
 const { Resend } = require('resend');
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
-// ── Vercel: disable body parsing so we can read raw bytes ──────────────────
-module.exports.config = {
-  api: { bodyParser: false },
-};
-
-// ── Helper: collect raw body buffer ───────────────────────────────────────
-function getRawBody(req) {
-  return new Promise((resolve, reject) => {
-    const chunks = [];
-    req.on('data', (chunk) => chunks.push(chunk));
-    req.on('end',  () => resolve(Buffer.concat(chunks)));
-    req.on('error', reject);
-  });
+// Lazy — initialised on first request so missing env vars don't crash cold starts
+let resend;
+function getResend() {
+  if (!resend) resend = new Resend(process.env.RESEND_API_KEY);
+  return resend;
 }
 
-// ── Helper: write a record to Airtable via REST API ───────────────────────
-async function writeToAirtable(tableName, fields) {
-  const url = `https://api.airtable.com/v0/${process.env.AIRTABLE_BASE_ID}/${encodeURIComponent(tableName)}`;
-
-  const response = await fetch(url, {
-    method:  'POST',
-    headers: {
-      'Authorization': `Bearer ${process.env.AIRTABLE_API_KEY}`,
-      'Content-Type':  'application/json',
-    },
-    body: JSON.stringify({ fields }),
-  });
-
-  if (!response.ok) {
-    const text = await response.text();
-    throw new Error(`Airtable error ${response.status}: ${text}`);
+// ── Hash verification ──────────────────────────────────────────────────────
+// Helcim: sha256( JSON.stringify(transactionData) + secretToken )
+// Mirrors the PHP/Python examples in Helcim docs.
+function verifyHash(transactionData, secretToken, helcimHash) {
+  try {
+    // Re-serialise with no spaces (same as Helcim's canonical form)
+    const jsonStr      = JSON.stringify(transactionData);
+    const computedHash = crypto
+      .createHash('sha256')
+      .update(jsonStr + secretToken)
+      .digest('hex');
+    return computedHash === helcimHash;
+  } catch {
+    return false;
   }
+}
 
-  return response.json();
+// ── Google Sheets auth ─────────────────────────────────────────────────────
+function getSheetsClient() {
+  const auth = new google.auth.GoogleAuth({
+    credentials: {
+      client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+      private_key:  process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+    },
+    scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+  });
+  return google.sheets({ version: 'v4', auth });
+}
+
+async function appendRow(sheets, range, values) {
+  await sheets.spreadsheets.values.append({
+    spreadsheetId:   process.env.GOOGLE_SHEET_ID,
+    range,
+    valueInputOption: 'RAW',
+    requestBody:     { values: [values] },
+  });
 }
 
 // ── Email templates ────────────────────────────────────────────────────────
@@ -55,30 +67,27 @@ function subscriptionEmailHtml(name) {
   return `
     <div style="font-family: Georgia, serif; max-width: 520px; margin: 0 auto; color: #2C2C2C; line-height: 1.7; padding: 40px 20px;">
       <p style="font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: #9E9E8F; margin-bottom: 32px;">
-        Ikebana Box · flowerscan
+        Ikebana Box &middot; flowerscan
       </p>
       <h1 style="font-weight: 300; font-size: 32px; margin-bottom: 24px;">Your Ikebana Box is on its way.</h1>
       <p>Hello ${firstName},</p>
       <p>
-        Your subscription is confirmed. Your first Ikebana Box will arrive within the next
-        few days — seasonal stems, a kenzan, a ceramic vessel, and your first arrangement
-        instruction card.
+        Your subscription is confirmed. Your first Ikebana Box will arrive within
+        the next few days — seasonal stems, a kenzan, a ceramic vessel, and your
+        first arrangement instruction card.
       </p>
       <p>
-        Every two weeks from here, a new box arrives timed to the natural life of your
-        last arrangement. You'll receive a delivery email a day or two before each box
-        with details on what's coming.
+        Every two weeks from here, a new box arrives timed to the natural life of
+        your last arrangement. You'll receive a delivery email a day or two before
+        each box with details on what's coming.
       </p>
       <p>
-        You can pause, skip, or cancel anytime through your
-        <a href="https://billing.stripe.com/p/login/test_placeholder" style="color: #8B7355;">subscriber portal</a>.
-      </p>
-      <p style="margin-top: 32px; color: #9E9E8F; font-size: 14px;">
-        Questions? Reply to this email or write to
-        <a href="mailto:hello@flowerscan.ca" style="color: #8B7355;">hello@flowerscan.ca</a>.
+        Questions or changes? Email us at
+        <a href="mailto:hello@flowerscan.ca" style="color: #8B7355;">hello@flowerscan.ca</a>
+        or visit our <a href="${process.env.YOUR_DOMAIN}/faq.html" style="color: #8B7355;">FAQ</a>.
       </p>
       <p style="margin-top: 48px; color: #9E9E8F; font-size: 13px;">
-        — flowerscan · Toronto, ON
+        With care, Ikebana Box &middot; flowerscan.ca
       </p>
     </div>
   `;
@@ -95,7 +104,7 @@ function workshopEmailHtml(name, workshopDate) {
   return `
     <div style="font-family: Georgia, serif; max-width: 520px; margin: 0 auto; color: #2C2C2C; line-height: 1.7; padding: 40px 20px;">
       <p style="font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: #9E9E8F; margin-bottom: 32px;">
-        Ikebana Box · flowerscan
+        Ikebana Box &middot; flowerscan
       </p>
       <h1 style="font-weight: 300; font-size: 32px; margin-bottom: 24px;">You're booked.</h1>
       <p>Hello ${firstName},</p>
@@ -103,23 +112,22 @@ function workshopEmailHtml(name, workshopDate) {
         Your spot in the ikebana workshop on <strong>${displayDate}</strong> is confirmed.
       </p>
       <p>
-        The session runs 2:00 – 4:00 pm. Location details will follow in a separate email
-        closer to the date. All materials are provided — no need to bring anything except
-        yourself and a little curiosity.
+        The session runs 2:00 – 4:00 pm. Location details will follow in a separate
+        email closer to the date. All materials are provided.
       </p>
-      <ul style="padding-left: 20px; color: #2C2C2C;">
+      <ul style="padding-left: 20px; color: #2C2C2C; margin-block: 16px;">
         <li>Duration: 2 hours</li>
-        <li>All materials included (stems, vessel or kenzan, clippers)</li>
+        <li>All materials included — stems, vessel or kenzan, clippers</li>
         <li>Light refreshments</li>
         <li>You take your arrangement home</li>
       </ul>
-      <p style="margin-top: 24px; font-size: 14px; color: #9E9E8F;">
-        Cancellations more than 72 hours before the session receive a full refund.
-        Within 72 hours, your spot can be transferred to another person.
-        Email <a href="mailto:hello@flowerscan.ca" style="color: #8B7355;">hello@flowerscan.ca</a> to arrange.
+      <p style="font-size: 14px; color: #9E9E8F;">
+        To cancel or transfer your spot, email
+        <a href="mailto:hello@flowerscan.ca" style="color: #8B7355;">hello@flowerscan.ca</a>
+        at least 48 hours before the session.
       </p>
       <p style="margin-top: 48px; color: #9E9E8F; font-size: 13px;">
-        — flowerscan · Toronto, ON
+        See you soon, Ikebana Box &middot; flowerscan.ca
       </p>
     </div>
   `;
@@ -127,80 +135,81 @@ function workshopEmailHtml(name, workshopDate) {
 
 // ── Main handler ───────────────────────────────────────────────────────────
 module.exports = async function handler(req, res) {
-  if (req.method !== 'POST') {
-    return res.status(405).send('Method not allowed');
+  // CORS
+  const allowed = [process.env.YOUR_DOMAIN, 'http://localhost:3000', 'http://127.0.0.1:5500'];
+  const origin  = req.headers.origin;
+  if (allowed.includes(origin)) res.setHeader('Access-Control-Allow-Origin', origin);
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  if (req.method === 'OPTIONS') return res.status(204).end();
+  if (req.method !== 'POST')   return res.status(405).json({ error: 'Method not allowed' });
+
+  const { transactionData, hash, secretToken, type, workshopDate } = req.body || {};
+
+  if (!transactionData || !hash || !secretToken) {
+    return res.status(400).json({ error: 'Missing required fields' });
   }
 
-  const sig     = req.headers['stripe-signature'];
-  const rawBody = await getRawBody(req);
-
-  let event;
-  try {
-    event = stripe.webhooks.constructEvent(rawBody, sig, process.env.STRIPE_WEBHOOK_SECRET);
-  } catch (err) {
-    console.error('Webhook signature verification failed:', err.message);
-    return res.status(400).send(`Webhook Error: ${err.message}`);
+  // Verify the transaction hash
+  if (!verifyHash(transactionData, secretToken, hash)) {
+    console.error('Hash verification failed');
+    return res.status(400).json({ error: 'Invalid transaction hash' });
   }
 
-  if (event.type !== 'checkout.session.completed') {
-    return res.status(200).json({ received: true });
-  }
-
-  const session      = event.data.object;
-  const customerName  = session.customer_details?.name  || '';
-  const customerEmail = session.customer_details?.email || '';
-  const sessionMode   = session.mode;           // 'payment' | 'subscription'
-  const workshopDate  = session.metadata?.workshop_date || '';
-
-  // Determine product type from metadata or session mode
-  // Workshop sessions are always one-time payments with a workshop_date in metadata
-  const isWorkshop     = Boolean(workshopDate);
-  const isSubscription = sessionMode === 'subscription';
-  const isStarter      = sessionMode === 'payment' && !isWorkshop;
+  const name  = transactionData.cardHolderName || '';
+  const email = transactionData.customerCode   || '';   // Helcim uses customerCode; email may come separately
+  const now   = new Date().toISOString().split('T')[0];
 
   try {
+    const sheets     = getSheetsClient();
+    const isWorkshop = type === 'workshop';
+
     if (isWorkshop) {
-      // ── Workshop booking ──────────────────────────────────────────────
-      await writeToAirtable(process.env.AIRTABLE_WORKSHOPS_TABLE, {
-        Name:               customerName,
-        Email:              customerEmail,
-        'Workshop Date':    workshopDate,
-        Style:              '',                   // Could be added to metadata if needed
-        Status:             'Confirmed',
-        'Stripe Payment ID': session.payment_intent || session.id,
-      });
+      // Write to Workshop Bookings sheet
+      // Columns: Name | Email | Workshop Date | Style | Status | Helcim Payment ID | Created At
+      await appendRow(sheets, `${process.env.AIRTABLE_WORKSHOPS_TABLE}!A:G`, [
+        name,
+        email,
+        workshopDate || '',
+        '',   // Style — can be added to the request payload if needed
+        'Confirmed',
+        String(transactionData.transactionId || ''),
+        now,
+      ]);
 
-      await resend.emails.send({
+      await getResend().emails.send({
         from:    'Ikebana Box <hello@flowerscan.ca>',
-        to:      customerEmail,
-        subject: `You're booked — Ikebana Workshop ${workshopDate}`,
-        html:    workshopEmailHtml(customerName, workshopDate),
+        to:      email,
+        subject: `You're booked — Ikebana Workshop ${workshopDate || ''}`,
+        html:    workshopEmailHtml(name, workshopDate),
       });
 
     } else {
-      // ── Subscription or Starter box ───────────────────────────────────
-      await writeToAirtable(process.env.AIRTABLE_SUBSCRIBERS_TABLE, {
-        Name:                 customerName,
-        Email:                customerEmail,
-        Plan:                 isSubscription ? 'Recurring' : 'Starter',
-        'Start Date':         new Date().toISOString().split('T')[0],
-        Status:               'Active',
-        'Stripe Customer ID': session.customer || '',
-      });
+      // Write to Subscribers sheet
+      // Columns: Name | Email | Plan | Start Date | Status | Helcim Customer ID | Created At
+      await appendRow(sheets, `${process.env.AIRTABLE_SUBSCRIBERS_TABLE}!A:G`, [
+        name,
+        email,
+        type === 'starter' ? 'Starter' : 'Recurring',
+        now,
+        'Active',
+        String(transactionData.customerCode || ''),
+        now,
+      ]);
 
-      await resend.emails.send({
+      await getResend().emails.send({
         from:    'Ikebana Box <hello@flowerscan.ca>',
-        to:      customerEmail,
+        to:      email,
         subject: 'Your Ikebana Box is on its way',
-        html:    subscriptionEmailHtml(customerName),
+        html:    subscriptionEmailHtml(name),
       });
     }
 
-    return res.status(200).json({ received: true });
+    return res.status(200).json({ ok: true });
 
   } catch (err) {
-    console.error('Post-checkout processing error:', err.message);
-    // Return 200 so Stripe does not retry — log and investigate separately
-    return res.status(200).json({ received: true, warning: err.message });
+    console.error('Post-payment processing error:', err.message);
+    return res.status(500).json({ error: 'Processing failed' });
   }
 };
