@@ -82,6 +82,7 @@ body {
   font-weight: var(--weight-light);
   line-height: 1.7;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 img,
@@ -999,7 +1000,7 @@ p.prose-wide {
    19. Responsive
    ------------------------------------------------------------ */
 
-/* Tablet */
+/* Tablet — 768px */
 @media (max-width: 768px) {
   :root {
     --spacing-section: 4rem;
@@ -1008,6 +1009,12 @@ p.prose-wide {
   h1 { font-size: var(--text-3xl); }
   h2 { font-size: var(--text-2xl); }
 
+  /* Hero phrase: scale down one step */
+  .hero__phrase {
+    font-size: var(--text-xl);
+  }
+
+  /* Grids collapse to single column */
   .grid-2,
   .grid-3,
   .grid-4 {
@@ -1023,16 +1030,25 @@ p.prose-wide {
     grid-template-columns: 1fr;
   }
 
+  /* Callout stacks vertically */
   .callout {
     flex-direction: column;
     align-items: flex-start;
   }
 
+  /* Footer: stack brand + links */
   .footer__main {
     flex-direction: column;
     gap: var(--spacing-md);
   }
 
+  .footer__links {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+  }
+
+  /* About: portrait above text */
   .about-layout {
     grid-template-columns: 1fr;
   }
@@ -1041,35 +1057,63 @@ p.prose-wide {
     aspect-ratio: 4 / 3;
   }
 
+  /* Gallery: 2 columns */
   .gallery-grid {
     columns: 2;
   }
 
+  /* Workshop card: stack date + button */
   .card--workshop {
     grid-template-columns: 1fr;
+    gap: var(--spacing-sm);
   }
 }
 
-/* Mobile */
+/* Mobile — 480px */
 @media (max-width: 480px) {
   :root {
     --spacing-section: 3rem;
   }
 
+  /* Typography */
   h1 { font-size: var(--text-2xl); }
   h2 { font-size: var(--text-xl); }
 
-  .nav__links {
-    gap: var(--spacing-md);
+  /* Nav: stack logo above links so nothing overflows */
+  .nav {
+    height: auto;
   }
 
+  .nav__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding-block: 0.875rem;
+  }
+
+  .nav__links {
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+  }
+
+  .nav__link {
+    font-size: var(--text-xs);
+  }
+
+  /* Hero */
   .hero {
     min-height: 75vh;
   }
 
+  /* Hero phrase: down to lg so letter-spacing doesn't overflow */
+  .hero__phrase {
+    font-size: var(--text-lg);
+    letter-spacing: 0.12em;
+  }
+
   .hero__actions {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
   }
 
   .hero__actions .btn {
@@ -1077,16 +1121,45 @@ p.prose-wide {
     text-align: center;
   }
 
+  /* Hero subtitle: allow full width */
+  .hero__subtitle {
+    max-width: 100%;
+  }
+
+  /* Cards: tighter padding on small screens */
+  .card {
+    padding: var(--spacing-md);
+  }
+
+  /* Workshop book button: full width when stacked */
+  .card--workshop .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Gallery: single column */
   .gallery-grid {
     columns: 1;
   }
 
+  /* Photo strip: slightly narrower tiles */
   .photo-strip__item {
     flex: 0 0 220px;
     height: 280px;
   }
 
+  /* Confirmation page */
   .confirmation__title {
     font-size: var(--text-2xl);
+  }
+
+  /* FAQ question text: slightly smaller so long questions don't wrap badly */
+  .faq-item__question {
+    font-size: var(--text-base);
+  }
+
+  /* Pricing note: full width */
+  .note {
+    max-width: 100%;
   }
 }
