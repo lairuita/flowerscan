@@ -6,7 +6,7 @@
 /* ------------------------------------------------------------
    1. Google Fonts Import
    ------------------------------------------------------------ */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500&family=Shippori+Mincho:wght@400&display=swap');
 
 
 /* ------------------------------------------------------------
@@ -420,10 +420,10 @@ p.prose-wide {
 /* Cycling phrase — wabi-sabi text animation */
 .hero__phrase {
   display: block;
-  font-family: var(--font-heading);
+  font-family: 'Shippori Mincho', serif;
   font-size: var(--text-2xl);
-  font-weight: var(--weight-light);
-  font-style: italic;
+  font-weight: 400;
+  font-style: normal;
   letter-spacing: 0.2em;
   color: var(--color-muted);
   text-transform: lowercase;
