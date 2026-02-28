@@ -11,6 +11,9 @@
 //   workshopDate?:   string,   // "YYYY-MM-DD" for workshops
 // }
 // Response: { ok: true }
+//
+// Google Sheets and Resend are optional — if env vars are missing,
+// those steps are skipped gracefully and the payment still completes.
 
 const crypto     = require('crypto');
 const { google } = require('googleapis');
@@ -23,12 +26,16 @@ function getResend() {
   return resend;
 }
 
+const hasSheets = () =>
+  process.env.GOOGLE_SHEET_ID &&
+  process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL &&
+  process.env.GOOGLE_PRIVATE_KEY;
+
+const hasResend = () => Boolean(process.env.RESEND_API_KEY);
+
 // ── Hash verification ──────────────────────────────────────────────────────
-// Helcim: sha256( JSON.stringify(transactionData) + secretToken )
-// Mirrors the PHP/Python examples in Helcim docs.
 function verifyHash(transactionData, secretToken, helcimHash) {
   try {
-    // Re-serialise with no spaces (same as Helcim's canonical form)
     const jsonStr      = JSON.stringify(transactionData);
     const computedHash = crypto
       .createHash('sha256')
@@ -40,7 +47,7 @@ function verifyHash(transactionData, secretToken, helcimHash) {
   }
 }
 
-// ── Google Sheets auth ─────────────────────────────────────────────────────
+// ── Google Sheets ──────────────────────────────────────────────────────────
 function getSheetsClient() {
   const auth = new google.auth.GoogleAuth({
     credentials: {
@@ -54,10 +61,10 @@ function getSheetsClient() {
 
 async function appendRow(sheets, range, values) {
   await sheets.spreadsheets.values.append({
-    spreadsheetId:   process.env.GOOGLE_SHEET_ID,
+    spreadsheetId:    process.env.GOOGLE_SHEET_ID,
     range,
     valueInputOption: 'RAW',
-    requestBody:     { values: [values] },
+    requestBody:      { values: [values] },
   });
 }
 
@@ -157,59 +164,59 @@ module.exports = async function handler(req, res) {
     return res.status(400).json({ error: 'Invalid transaction hash' });
   }
 
-  const name  = transactionData.cardHolderName || '';
-  const email = transactionData.customerCode   || '';   // Helcim uses customerCode; email may come separately
-  const now   = new Date().toISOString().split('T')[0];
+  const name       = transactionData.cardHolderName || '';
+  const email      = transactionData.customerCode   || '';
+  const now        = new Date().toISOString().split('T')[0];
+  const isWorkshop = type === 'workshop';
 
-  try {
-    const sheets     = getSheetsClient();
-    const isWorkshop = type === 'workshop';
-
-    if (isWorkshop) {
-      // Write to Workshop Bookings sheet
-      // Columns: Name | Email | Workshop Date | Style | Status | Helcim Payment ID | Created At
-      await appendRow(sheets, `${process.env.AIRTABLE_WORKSHOPS_TABLE}!A:G`, [
-        name,
-        email,
-        workshopDate || '',
-        '',   // Style — can be added to the request payload if needed
-        'Confirmed',
-        String(transactionData.transactionId || ''),
-        now,
-      ]);
-
-      await getResend().emails.send({
-        from:    'Ikebana Box <hello@flowerscan.ca>',
-        to:      email,
-        subject: `You're booked — Ikebana Workshop ${workshopDate || ''}`,
-        html:    workshopEmailHtml(name, workshopDate),
-      });
-
-    } else {
-      // Write to Subscribers sheet
-      // Columns: Name | Email | Plan | Start Date | Status | Helcim Customer ID | Created At
-      await appendRow(sheets, `${process.env.AIRTABLE_SUBSCRIBERS_TABLE}!A:G`, [
-        name,
-        email,
-        type === 'starter' ? 'Starter' : 'Recurring',
-        now,
-        'Active',
-        String(transactionData.customerCode || ''),
-        now,
-      ]);
-
-      await getResend().emails.send({
-        from:    'Ikebana Box <hello@flowerscan.ca>',
-        to:      email,
-        subject: 'Your Ikebana Box is on its way',
-        html:    subscriptionEmailHtml(name),
-      });
+  // ── Google Sheets (optional) ─────────────────────────────────────────────
+  if (hasSheets()) {
+    try {
+      const sheets = getSheetsClient();
+      if (isWorkshop) {
+        await appendRow(sheets, `${process.env.AIRTABLE_WORKSHOPS_TABLE}!A:G`, [
+          name, email, workshopDate || '', '', 'Confirmed',
+          String(transactionData.transactionId || ''), now,
+        ]);
+      } else {
+        await appendRow(sheets, `${process.env.AIRTABLE_SUBSCRIBERS_TABLE}!A:G`, [
+          name, email, type === 'starter' ? 'Starter' : 'Recurring',
+          now, 'Active', String(transactionData.customerCode || ''), now,
+        ]);
+      }
+    } catch (err) {
+      // Log but don't fail — payment already succeeded
+      console.error('Google Sheets error:', err.message);
     }
-
-    return res.status(200).json({ ok: true });
-
-  } catch (err) {
-    console.error('Post-payment processing error:', err.message);
-    return res.status(500).json({ error: 'Processing failed' });
+  } else {
+    console.log('Google Sheets not configured — skipping.');
   }
+
+  // ── Resend email (optional) ──────────────────────────────────────────────
+  if (hasResend() && email) {
+    try {
+      if (isWorkshop) {
+        await getResend().emails.send({
+          from:    'Ikebana Box <hello@flowerscan.ca>',
+          to:      email,
+          subject: `You're booked — Ikebana Workshop ${workshopDate || ''}`,
+          html:    workshopEmailHtml(name, workshopDate),
+        });
+      } else {
+        await getResend().emails.send({
+          from:    'Ikebana Box <hello@flowerscan.ca>',
+          to:      email,
+          subject: 'Your Ikebana Box is on its way',
+          html:    subscriptionEmailHtml(name),
+        });
+      }
+    } catch (err) {
+      // Log but don't fail — payment already succeeded
+      console.error('Resend error:', err.message);
+    }
+  } else {
+    console.log('Resend not configured — skipping.');
+  }
+
+  return res.status(200).json({ ok: true });
 };
