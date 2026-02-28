@@ -271,6 +271,14 @@ p.prose-wide {
   letter-spacing: 0.03em;
   color: var(--color-text);
   line-height: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.45em;
+}
+
+.nav__logo-icon {
+  height: 1.1em;
+  width: auto;
 }
 
 .nav__logo:hover {

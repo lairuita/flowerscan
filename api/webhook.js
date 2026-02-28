@@ -116,7 +116,7 @@ function workshopEmailHtml(name, workshopDate) {
       <h1 style="font-weight: 300; font-size: 32px; margin-bottom: 24px;">You're booked.</h1>
       <p>Hello ${firstName},</p>
       <p>
-        Your spot in the ikebana workshop on <strong>${displayDate}</strong> is confirmed.
+        Your spot in the ikebana-inspired workshop on <strong>${displayDate}</strong> is confirmed.
       </p>
       <p>
         The session runs 2:00 – 4:00 pm. Location details will follow in a separate
@@ -199,7 +199,7 @@ module.exports = async function handler(req, res) {
         await getResend().emails.send({
           from:    'Ikebana Box <hello@flowerscan.ca>',
           to:      email,
-          subject: `You're booked — Ikebana Workshop ${workshopDate || ''}`,
+          subject: `You're booked — Ikebana-Inspired Workshop ${workshopDate || ''}`,
           html:    workshopEmailHtml(name, workshopDate),
         });
       } else {
