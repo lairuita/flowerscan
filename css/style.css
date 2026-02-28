@@ -14,11 +14,11 @@
    ------------------------------------------------------------ */
 :root {
   /* Colors */
-  --color-bg:      #F5F0EA;
-  --color-text:    #2C2C2C;
+  --color-bg:      #544E47;
+  --color-text:    #F0EBE3;
   --color-accent:  #8B7355;
-  --color-muted:   #9E9E8F;
-  --color-border:  #DDD8CF;
+  --color-muted:   #B8AFA6;
+  --color-border:  #6B6259;
 
   /* Typography */
   --font-heading: 'Cormorant Garamond', serif;
