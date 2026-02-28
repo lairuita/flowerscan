@@ -3,6 +3,7 @@
    1. Hero phrase animation
    2. FAQ accordion
    3. Helcim checkout (HelcimPay.js modal)
+   4. First delivery date calculator
    ============================================================ */
 
 (function () {
@@ -218,12 +219,68 @@
 
 
   /* ----------------------------------------------------------
+     4. First Delivery Date Calculator
+
+     Rules:
+       - Deliveries happen every other Saturday (bi-weekly).
+       - Orders need 2 days to process.
+       - If today <= deliverySaturday - 2 days → that Saturday.
+       - Otherwise → the following delivery Saturday (+ 14 days).
+
+     Anchor: Feb 28, 2026 is a known delivery Saturday.
+  ---------------------------------------------------------- */
+  function getFirstDeliveryDate() {
+    var ANCHOR      = new Date(2026, 1, 28); // Feb 28, 2026 (months 0-indexed)
+    var NOTICE_DAYS = 2;
+    var CYCLE_DAYS  = 14;
+
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    // Earliest date on which a delivery is still processable
+    var earliest = new Date(today);
+    earliest.setDate(earliest.getDate() + NOTICE_DAYS);
+
+    // How many full 14-day cycles from the anchor to reach or pass earliest?
+    var diffDays = Math.round((earliest - ANCHOR) / 86400000);
+    var cycles   = diffDays <= 0 ? 0 : Math.ceil(diffDays / CYCLE_DAYS);
+
+    var delivery = new Date(ANCHOR);
+    delivery.setDate(ANCHOR.getDate() + cycles * CYCLE_DAYS);
+
+    // Safety guard (shouldn't be needed with Math.ceil)
+    if (delivery < earliest) {
+      delivery.setDate(delivery.getDate() + CYCLE_DAYS);
+    }
+
+    return delivery;
+  }
+
+  function initDeliveryDate() {
+    var el = document.getElementById('first-delivery-date');
+    if (!el) return;
+
+    var date   = getFirstDeliveryDate();
+    var days   = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    var months = ['January','February','March','April','May','June',
+                  'July','August','September','October','November','December'];
+
+    var label = days[date.getDay()] + ', ' + months[date.getMonth()] + '\u00a0' + date.getDate();
+    if (date.getFullYear() !== new Date().getFullYear()) {
+      label += ', ' + date.getFullYear();
+    }
+    el.textContent = label;
+  }
+
+
+  /* ----------------------------------------------------------
      Init
   ---------------------------------------------------------- */
   document.addEventListener('DOMContentLoaded', function () {
     initHeroPhrase();
     initFaqAccordion();
     initCheckout();
+    initDeliveryDate();
   });
 
 }());

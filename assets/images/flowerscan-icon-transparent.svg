@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" width="200" height="240">
+
+  <!-- === MORIBANA PLATE === -->
+  <ellipse cx="100" cy="200" rx="52" ry="14" fill="none" stroke="#6b5c4e" stroke-width="1.6"/>
+  <ellipse cx="100" cy="197" rx="46" ry="10" fill="none" stroke="#6b5c4e" stroke-width="1.6"/>
+  <ellipse cx="100" cy="207" rx="40" ry="7" fill="none" stroke="#6b5c4e" stroke-width="1.6"/>
+  <line x1="48"  y1="200" x2="60"  y2="207" stroke="#6b5c4e" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="152" y1="200" x2="140" y2="207" stroke="#6b5c4e" stroke-width="1.6" stroke-linecap="round"/>
+
+  <!-- === STEM === -->
+  <path d="M 98 194 C 94 175 88 158 96 138 C 104 118 114 108 118 88"
+    fill="none" stroke="#6b5c4e" stroke-width="1.8" stroke-linecap="round"/>
+
+  <!-- === LEFT LEAF === -->
+  <path d="M 94 148 C 78 138 58 136 48 126 C 64 126 84 138 94 148 Z"
+    fill="none" stroke="#6b5c4e" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+
+  <!-- === RIGHT LEAF === -->
+  <path d="M 112 112 C 126 100 146 98 156 88 C 140 90 122 102 112 112 Z"
+    fill="none" stroke="#6b5c4e" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+
+  <!-- === FLOWER === -->
+  <g transform="translate(120, 76) rotate(28)">
+    <path d="M 0 0 C -4 -6 -4 -18 0 -22 C 4 -18 4 -6 0 0 Z"
+      fill="none" stroke="#6b5c4e" stroke-width="1.6" stroke-linejoin="round"/>
+    <path d="M 0 0 C 8 -4 18 -2 20 3 C 16 8 7 5 0 0 Z"
+      fill="none" stroke="#6b5c4e" stroke-width="1.6" stroke-linejoin="round"/>
+    <path d="M 0 0 C 4 8 2 18 -3 20 C -8 16 -6 7 0 0 Z"
+      fill="none" stroke="#6b5c4e" stroke-width="1.6" stroke-linejoin="round"/>
+    <circle cx="0" cy="0" r="3" fill="#6b5c4e"/>
+  </g>
+
+</svg>
