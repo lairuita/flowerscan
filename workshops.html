@@ -9,6 +9,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      --color-bg:     #D6CFC6;
+      --color-text:   #2C2C2C;
+      --color-muted:  #7A7268;
+      --color-border: #C0B9B0;
+    }
+  </style>
 </head>
 <body>
 
@@ -179,18 +187,16 @@
   <section class="section section--sm" aria-labelledby="past-heading">
     <div class="container">
       <span class="label">Past events</span>
-      <h2 id="past-heading" style="margin-top: 1rem; margin-bottom: 2.5rem;">From the room.</h2>
+      <h2 id="past-heading" style="margin-top: 1rem; margin-bottom: 1.5rem;">From the room.</h2>
+    </div>
 
-      <div class="gallery-grid" role="list">
-        <div class="gallery-grid__item" role="listitem">
-          <div class="img-placeholder" style="aspect-ratio: 4/3;" role="img" aria-label="Past workshop photo placeholder"></div>
-        </div>
-        <div class="gallery-grid__item" role="listitem">
-          <div class="img-placeholder" style="aspect-ratio: 4/3;" role="img" aria-label="Past workshop photo placeholder"></div>
-        </div>
-        <div class="gallery-grid__item" role="listitem">
-          <div class="img-placeholder" style="aspect-ratio: 4/3;" role="img" aria-label="Past workshop photo placeholder"></div>
-        </div>
+    <div style="padding-inline: var(--spacing-md); max-width: var(--max-width); margin-inline: auto; overflow: visible;">
+      <div class="photo-strip" role="list" aria-label="Past event photos">
+        <div class="photo-strip__item" role="listitem"></div>
+        <div class="photo-strip__item" role="listitem"></div>
+        <div class="photo-strip__item" role="listitem"></div>
+        <div class="photo-strip__item" role="listitem"></div>
+        <div class="photo-strip__item" role="listitem"></div>
       </div>
     </div>
   </section>
