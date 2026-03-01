@@ -373,7 +373,7 @@ p.prose-wide {
 .hero {
   position: relative;
   width: 100%;
-  min-height: 85vh;
+  min-height: 60vh;
   display: flex;
   align-items: flex-end;
   overflow: hidden;
