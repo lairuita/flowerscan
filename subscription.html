@@ -27,6 +27,7 @@
     <div class="nav__inner">
       <a href="index.html" class="nav__logo"><img src="assets/images/flowerscan-icon-transparent.svg" alt="" aria-hidden="true" class="nav__logo-icon">flowerscan</a>
       <ul class="nav__links" role="list">
+        <li><a href="index.html" class="nav__link">Home</a></li>
         <li><a href="subscription.html" class="nav__link nav__link--active">Ikebana Box</a></li>
         <li><a href="workshops.html" class="nav__link">Workshops</a></li>
         <li><a href="gallery.html" class="nav__link">Gallery</a></li>
@@ -49,6 +50,73 @@
         Sogetsu ikebana teaches that arrangement belongs to everyone —
         no rules, only presence. Each box is an invitation to show up
         and see what you make.
+      </p>
+    </div>
+  </section>
+
+  <hr class="divider" style="margin: 0; border-top: 1px solid var(--color-border);">
+
+
+  <!-- ============================================================
+       Pricing
+  ============================================================ -->
+  <section class="section" aria-labelledby="pricing-heading">
+    <div class="container">
+      <span class="label">Pricing</span>
+      <h2 id="pricing-heading" style="margin-top: 1rem; margin-bottom: 3rem;">Choose your box.</h2>
+
+      <div class="grid-2" style="align-items: start;">
+
+        <!-- Ikebana Box subscription -->
+        <div class="card">
+          <div class="card__label">Bi-weekly subscription</div>
+          <h3 class="card__title">Ikebana Box</h3>
+          <div class="card__price">$59 <span style="font-size: var(--text-base); color: var(--color-muted); font-family: var(--font-body); font-weight: var(--weight-light);">CAD / delivery</span></div>
+          <p class="card__note">Recurring. Pause or cancel anytime.</p>
+          <ul class="card__list" aria-label="Ikebana Box includes">
+            <li>Seasonal stems, curated for ikebana-inspired arrangement</li>
+            <li>Arrangement instruction card</li>
+            <li>Flower care guide</li>
+            <li>Access to your subscriber portal</li>
+          </ul>
+          <button
+            class="btn btn--primary"
+            style="width: 100%;"
+            data-checkout-type="subscription"
+            aria-label="Subscribe to Ikebana Box — $59 CAD per delivery"
+          >
+            Subscribe
+          </button>
+        </div>
+
+        <!-- Optional Starter Bundle -->
+        <div class="card">
+          <div class="card__label">Optional add-on &nbsp;&middot;&nbsp; One-time</div>
+          <h3 class="card__title">Starter Bundle</h3>
+          <div class="card__price">$65 <span style="font-size: var(--text-base); color: var(--color-muted); font-family: var(--font-body); font-weight: var(--weight-light);">CAD</span></div>
+          <p class="card__note">Everything you need to begin arranging.</p>
+          <ul class="card__list" aria-label="Starter Bundle includes">
+            <li>Kenzan (metal pin frog) — $35</li>
+            <li>Flat container for Moribana — $30</li>
+          </ul>
+          <button
+            class="btn btn--secondary"
+            style="width: 100%;"
+            data-checkout-type="starter"
+            aria-label="Add Starter Bundle — $65 CAD"
+          >
+            Add Starter Bundle
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Delivery note -->
+      <p class="note" style="margin-top: 1.5rem;">
+        Delivery within Toronto every Saturday, bi-weekly. Pickup available at no extra charge.
+        Delivery fee: $8 CAD.<br>
+        Orders need 2 days to process — subscribe today and your first box arrives
+        <span id="first-delivery-date">…</span>.
       </p>
     </div>
   </section>
@@ -106,75 +174,6 @@
         </svg>
         <p style="margin-top: 0.75rem; font-size: var(--text-sm); color: var(--color-muted); letter-spacing: 0.04em;">Unboxing video coming soon</p>
       </div>
-    </div>
-  </section>
-
-  <hr class="divider" style="margin: 0; border-top: 1px solid var(--color-border);">
-
-
-  <!-- ============================================================
-       Pricing
-  ============================================================ -->
-  <section class="section" aria-labelledby="pricing-heading">
-    <div class="container">
-      <span class="label">Pricing</span>
-      <h2 id="pricing-heading" style="margin-top: 1rem; margin-bottom: 3rem;">Choose your box.</h2>
-
-      <div class="grid-2" style="align-items: start;">
-
-        <!-- Starter Box -->
-        <div class="card">
-          <div class="card__label">First-time subscribers</div>
-          <h3 class="card__title">Starter Box</h3>
-          <div class="card__price">$65 <span style="font-size: var(--text-base); color: var(--color-muted); font-family: var(--font-body); font-weight: var(--weight-light);">CAD</span></div>
-          <p class="card__note">One-time. Everything you need to begin.</p>
-          <ul class="card__list" aria-label="Starter Box includes">
-            <li>5–7 seasonal stems, curated for ikebana-inspired arrangement</li>
-            <li>Kenzan (metal pin frog)</li>
-            <li>Ceramic vessel</li>
-            <li>Arrangement instruction card</li>
-          </ul>
-          <button
-            class="btn btn--primary"
-            style="width: 100%;"
-            data-checkout-type="starter"
-            aria-label="Start with the Starter Box — $65 CAD"
-          >
-            Start with the Starter Box
-          </button>
-        </div>
-
-        <!-- Recurring Subscription -->
-        <div class="card">
-          <div class="card__label">Bi-weekly subscription</div>
-          <h3 class="card__title">Ikebana Box</h3>
-          <div class="card__price">$55 <span style="font-size: var(--text-base); color: var(--color-muted); font-family: var(--font-body); font-weight: var(--weight-light);">CAD / delivery</span></div>
-          <p class="card__note">Recurring. Pause or cancel anytime.</p>
-          <ul class="card__list" aria-label="Ikebana Box includes">
-            <li>5–7 seasonal stems, curated for ikebana-inspired arrangement</li>
-            <li>Arrangement instruction card</li>
-            <li>Flower care guide</li>
-            <li>Access to your subscriber portal</li>
-          </ul>
-          <button
-            class="btn btn--secondary"
-            style="width: 100%;"
-            data-checkout-type="subscription"
-            aria-label="Subscribe to Ikebana Box — $55 CAD per delivery"
-          >
-            Subscribe
-          </button>
-        </div>
-
-      </div>
-
-      <!-- Delivery note -->
-      <p class="note" style="margin-top: 1.5rem;">
-        Delivery within Toronto every Saturday, bi-weekly. Pickup available at no extra charge.
-        Delivery fee: $8 CAD.<br>
-        Orders need 2 days to process — subscribe today and your first box arrives
-        <span id="first-delivery-date">…</span>.
-      </p>
     </div>
   </section>
 
