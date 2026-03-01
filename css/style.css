@@ -1145,6 +1145,7 @@ p.prose-wide {
 
   /* Minimal hero: tighten top padding further on small phones */
   .hero--minimal {
+    min-height: auto;
     padding-block: var(--spacing-md) var(--spacing-section);
   }
 
