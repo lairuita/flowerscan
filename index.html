@@ -16,6 +16,36 @@
       --color-muted:  #9E9E8F;
       --color-border: #DDD8CF;
     }
+    .hero--split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: stretch;
+    }
+    .hero--split .hero__content {
+      position: static;
+      padding: var(--spacing-xl) var(--spacing-lg);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+    .hero__image-right {
+      overflow: hidden;
+    }
+    .hero__image-right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(0.75);
+    }
+    @media (max-width: 768px) {
+      .hero--split {
+        grid-template-columns: 1fr;
+      }
+      .hero__image-right {
+        height: 60vw;
+      }
+    }
   </style>
 </head>
 <body>
@@ -40,18 +70,18 @@
   <!-- ============================================================
        Hero
   ============================================================ -->
-  <section class="hero" aria-label="Hero">
-    <!-- Replace src with your actual image path when available -->
-    <div class="hero__image hero__image--placeholder" role="img" aria-label="A single stem on a neutral background"></div>
-
+  <section class="hero hero--split" aria-label="Hero">
     <div class="hero__content">
-      <h1 class="hero__title">Flower arrangement,<br>a quiet practice.</h1>
+      <h1 class="hero__title">Flower arrangement,<br>a mindful practice.</h1>
       <span class="hero__phrase" id="hero-phrase" aria-hidden="true"></span>
       <p class="hero__subtitle">Every arrangement is a portrait of the person who made it.</p>
       <div class="hero__actions">
         <a href="subscription.html" class="btn btn--secondary">Subscribe</a>
         <a href="workshops.html" class="btn btn--muted">Join a Workshop</a>
       </div>
+    </div>
+    <div class="hero__image-right">
+      <img src="assets/images/M1.JPG" alt="Flower arrangement">
     </div>
   </section>
 
@@ -144,10 +174,7 @@
     <div style="padding-inline: var(--spacing-md); max-width: var(--max-width); margin-inline: auto; overflow: visible;">
       <div class="photo-strip" role="list" aria-label="Arrangement photos">
         <div class="photo-strip__item" role="listitem">
-          <img src="assets/images/M1.JPG" alt="Moribana arrangement">
-        </div>
-        <div class="photo-strip__item" role="listitem">
-          <img src="assets/images/N1.JPG" alt="Nageire arrangement">
+          <img src="assets/images/N1.JPG" alt="Flower arrangement">
         </div>
         <div class="photo-strip__item" role="listitem">
           <img src="assets/images/M3.JPG" alt="Moribana arrangement">
