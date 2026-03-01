@@ -47,10 +47,19 @@
         padding: 0 var(--spacing-md) var(--spacing-md);
       }
     }
-    @media (max-width: 480px) {
-      .offerings-row {
+    @media (max-width: 600px) {
+      .offerings-split {
         grid-template-columns: 1fr !important;
-        gap: 0.25rem !important;
+      }
+      .offerings-split__col {
+        padding-right: 0 !important;
+      }
+      .offerings-split__col--right {
+        padding-left: 0 !important;
+        border-left: none !important;
+        border-top: 1px solid var(--color-border);
+        padding-top: var(--spacing-lg);
+        margin-top: var(--spacing-lg);
       }
     }
   </style>
@@ -158,16 +167,24 @@
   <section class="section section--sm" aria-label="Two ways to practice">
     <div class="container">
       <span class="label">Two ways in</span>
-      <div style="margin-top: 2rem;">
+      <div class="offerings-split" style="margin-top: 2rem; display: grid; grid-template-columns: 1fr 1fr;">
 
-        <div class="offerings-row" style="display: grid; grid-template-columns: 10rem 1fr; gap: var(--spacing-lg); padding: 1.25rem 0; border-top: 1px solid var(--color-border); align-items: baseline;">
+        <!-- Left: The box -->
+        <div class="offerings-split__col" style="padding-right: var(--spacing-lg); display: flex; flex-direction: column;">
           <span style="font-family: var(--font-heading); font-size: var(--text-xl); font-weight: var(--weight-light);">The box.</span>
-          <p style="max-width: none; color: var(--color-muted);">Seasonal stems selected for arrangement — not a bouquet. Balanced floral materials you work with at home, guided by an instruction card written for that cycle.</p>
+          <p style="max-width: none; color: var(--color-muted); margin-top: 0.75rem; flex: 1;">Seasonal stems selected for arrangement — not a bouquet. Balanced floral materials you work with at home, guided by an instruction card written for that cycle.</p>
+          <div style="margin-top: 1.5rem;">
+            <a href="subscription.html" class="btn btn--muted btn--sm">See the box</a>
+          </div>
         </div>
 
-        <div class="offerings-row" style="display: grid; grid-template-columns: 10rem 1fr; gap: var(--spacing-lg); padding: 1.25rem 0; border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); align-items: baseline;">
+        <!-- Right: The workshop -->
+        <div class="offerings-split__col offerings-split__col--right" style="padding-left: var(--spacing-lg); border-left: 1px solid var(--color-border); display: flex; flex-direction: column;">
           <span style="font-family: var(--font-heading); font-size: var(--text-xl); font-weight: var(--weight-light);">The workshop.</span>
-          <p style="max-width: none; color: var(--color-muted);">In-person, in Toronto. A small group, hands-on guidance, and the company of others who arrange.</p>
+          <p style="max-width: none; color: var(--color-muted); margin-top: 0.75rem; flex: 1;">In-person, in Toronto. A small group, hands-on guidance, and the company of others who arrange.</p>
+          <div style="margin-top: 1.5rem;">
+            <a href="workshops.html" class="btn btn--muted btn--sm">See workshops</a>
+          </div>
         </div>
 
       </div>
