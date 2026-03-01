@@ -47,6 +47,12 @@
         padding: 0 var(--spacing-md) var(--spacing-md);
       }
     }
+    @media (max-width: 480px) {
+      .offerings-row {
+        grid-template-columns: 1fr !important;
+        gap: 0.25rem !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -75,7 +81,7 @@
     <div class="hero__content">
       <h1 class="hero__title">Flower arrangement,<br>a mindful practice.</h1>
       <span class="hero__phrase" id="hero-phrase" aria-hidden="true"></span>
-      <p class="hero__subtitle">Every arrangement is a portrait of the person who made it.</p>
+      <p class="hero__subtitle">Stems to arrange. Guidance to grow.</p>
       <div class="hero__actions">
         <a href="subscription.html" class="btn btn--secondary">Explore the Box</a>
         <a href="workshops.html" class="btn btn--muted">Join a Workshop</a>
@@ -139,6 +145,31 @@
 
       <div style="margin-top: 2.5rem;">
         <a href="subscription.html" class="btn btn--primary">See pricing</a>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" style="margin: 0; border-top: 1px solid var(--color-border);">
+
+
+  <!-- ============================================================
+       Two ways in
+  ============================================================ -->
+  <section class="section section--sm" aria-label="Two ways to practice">
+    <div class="container">
+      <span class="label">Two ways in</span>
+      <div style="margin-top: 2rem;">
+
+        <div class="offerings-row" style="display: grid; grid-template-columns: 10rem 1fr; gap: var(--spacing-lg); padding: 1.25rem 0; border-top: 1px solid var(--color-border); align-items: baseline;">
+          <span style="font-family: var(--font-heading); font-size: var(--text-xl); font-weight: var(--weight-light);">The box.</span>
+          <p style="max-width: none; color: var(--color-muted);">Seasonal stems selected for arrangement — not a bouquet. Balanced floral materials you work with at home, guided by an instruction card written for that cycle.</p>
+        </div>
+
+        <div class="offerings-row" style="display: grid; grid-template-columns: 10rem 1fr; gap: var(--spacing-lg); padding: 1.25rem 0; border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); align-items: baseline;">
+          <span style="font-family: var(--font-heading); font-size: var(--text-xl); font-weight: var(--weight-light);">The workshop.</span>
+          <p style="max-width: none; color: var(--color-muted);">In-person, in Toronto. A small group, hands-on guidance, and the company of others who arrange.</p>
+        </div>
+
       </div>
     </div>
   </section>
