@@ -119,11 +119,11 @@ function workshopEmailHtml(name, workshopDate) {
         Your spot in the ikebana-inspired workshop on <strong>${displayDate}</strong> is confirmed.
       </p>
       <p>
-        The session runs 2:00 – 4:00 pm. Location details will follow in a separate
+        The session runs 2:00 – 3:30 pm. Location details will follow in a separate
         email closer to the date. All materials are provided.
       </p>
       <ul style="padding-left: 20px; color: #2C2C2C; margin-block: 16px;">
-        <li>Duration: 2 hours</li>
+        <li>Duration: 1.5 hours</li>
         <li>All materials included — stems, vessel or kenzan, clippers</li>
         <li>Light refreshments</li>
         <li>You take your arrangement home</li>
