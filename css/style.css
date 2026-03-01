@@ -1100,6 +1100,11 @@ p.prose-wide {
     grid-template-columns: 1fr;
     gap: var(--spacing-sm);
   }
+
+  /* Minimal hero: reduce top padding on tablet/mobile */
+  .hero--minimal {
+    padding-block: var(--spacing-lg) var(--spacing-section);
+  }
 }
 
 /* Mobile — 480px */
@@ -1136,6 +1141,11 @@ p.prose-wide {
   /* Hero */
   .hero {
     min-height: 75vh;
+  }
+
+  /* Minimal hero: tighten top padding further on small phones */
+  .hero--minimal {
+    padding-block: var(--spacing-md) var(--spacing-section);
   }
 
   /* Hero phrase: down to lg so letter-spacing doesn't overflow */
