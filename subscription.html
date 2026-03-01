@@ -71,8 +71,8 @@
         <div class="card">
           <div class="card__label">Bi-weekly subscription</div>
           <h3 class="card__title">Ikebana Box</h3>
-          <div class="card__price">$59 <span style="font-size: var(--text-base); color: var(--color-muted); font-family: var(--font-body); font-weight: var(--weight-light);">CAD / delivery · pickup</span></div>
-          <div class="card__price" style="font-size: var(--text-xl); margin-top: 0.25rem;">$69 <span style="font-size: var(--text-base); color: var(--color-muted); font-family: var(--font-body); font-weight: var(--weight-light);">CAD / delivery · delivered to your door</span></div>
+          <div class="card__price">$59 <span style="font-size: var(--text-base); color: var(--color-muted); font-family: var(--font-body); font-weight: var(--weight-light);">CAD &nbsp;·&nbsp; self pickup</span></div>
+          <div class="card__price" style="font-size: var(--text-xl); margin-top: 0.25rem;">$69 <span style="font-size: var(--text-base); color: var(--color-muted); font-family: var(--font-body); font-weight: var(--weight-light);">CAD &nbsp;·&nbsp; delivered to your door</span></div>
           <p class="card__note">Recurring. Pause or cancel anytime.</p>
           <ul class="card__list" aria-label="Ikebana Box includes">
             <li>Seasonal stems, curated for ikebana-inspired arrangement</li>
@@ -97,24 +97,33 @@
       </div>
 
       <!-- Subscribe CTA -->
-      <div style="margin-top: 2.5rem; display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center;">
-        <a
-          href="https://subscriptions.helcim.com/subscribe/f2in63vbhyyqyjujmuix1tim8nfe9"
-          class="btn btn--primary"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Subscribe — Pickup, $59 per delivery"
-        >
-          Pickup — $59 / delivery
-        </a>
-        <!-- TODO: replace href with Helcim $69 delivery plan link -->
-        <a
-          href="#"
-          class="btn btn--primary"
-          aria-label="Subscribe — Delivered to your door, $69 per delivery"
-        >
-          Delivered — $69 / delivery
-        </a>
+      <div style="margin-top: 2.5rem; display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; align-items: flex-start;">
+
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 0.35rem;">
+          <a
+            href="https://subscriptions.helcim.com/subscribe/f2in63vbhyyqyjujmuix1tim8nfe9"
+            class="btn btn--primary"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Subscribe — Self Pickup, $59 per delivery"
+          >
+            Subscribe (Self Pickup)
+          </a>
+          <span style="font-size: var(--text-xs); color: var(--color-muted); letter-spacing: 0.03em;">Yonge &amp; Finch, Toronto</span>
+        </div>
+
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 0.35rem;">
+          <!-- TODO: replace href with Helcim $69 delivery plan link -->
+          <a
+            href="#"
+            class="btn btn--primary"
+            aria-label="Subscribe — Delivery, $69 per delivery"
+          >
+            Subscribe (Delivery)
+          </a>
+          <span style="font-size: var(--text-xs); color: var(--color-muted); letter-spacing: 0.03em;">Within Toronto</span>
+        </div>
+
       </div>
       <div style="text-align: center; margin-top: 0.75rem;">
         <a
