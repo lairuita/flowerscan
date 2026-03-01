@@ -63,9 +63,11 @@
   <section class="section" aria-labelledby="pricing-heading">
     <div class="container">
       <span class="label">Pricing</span>
-      <h2 id="pricing-heading" style="margin-top: 1rem; margin-bottom: 3rem;">The box.</h2>
+      <h2 id="pricing-heading" style="margin-top: 1rem; margin-bottom: 3rem;">What's included.</h2>
 
-      <div style="max-width: 480px;">
+      <div class="grid-2" style="align-items: start;">
+
+        <!-- Ikebana Box -->
         <div class="card">
           <div class="card__label">Bi-weekly subscription</div>
           <h3 class="card__title">Ikebana Box</h3>
@@ -76,23 +78,43 @@
             <li>Arrangement instruction card</li>
             <li>Flower care guide</li>
             <li>Access to your subscriber portal</li>
-            <li style="color: var(--color-muted);">Optional at checkout: starter kit — kenzan + flat container ($65, one-time)</li>
           </ul>
-          <a
-            href="https://subscriptions.helcim.com/subscribe/f2in63vbhyyqyjujmuix1tim8nfe9"
-            class="btn btn--primary"
-            style="width: 100%; display: block; text-align: center; box-sizing: border-box;"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Subscribe to Ikebana Box — $59 CAD per delivery"
-          >
-            Subscribe
-          </a>
         </div>
+
+        <!-- Starter Kit -->
+        <div class="card">
+          <div class="card__label">One-time setup fee</div>
+          <h3 class="card__title">Starter Kit</h3>
+          <div class="card__price">$65 <span style="font-size: var(--text-base); color: var(--color-muted); font-family: var(--font-body); font-weight: var(--weight-light);">CAD</span></div>
+          <p class="card__note">Required for all new subscribers.</p>
+          <ul class="card__list" aria-label="Starter Kit includes">
+            <li>Kenzan (metal pin frog)</li>
+            <li>Flat container for Moribana</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Subscribe CTA -->
+      <div style="text-align: center; margin-top: 2.5rem;">
+        <a
+          href="https://subscriptions.helcim.com/subscribe/f2in63vbhyyqyjujmuix1tim8nfe9"
+          class="btn btn--primary"
+          style="display: inline-block; padding-inline: 3rem;"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Subscribe — Ikebana Box $59/delivery + Starter Kit $65 one-time"
+        >
+          Subscribe — Ikebana Box + Starter Kit
+        </a>
+        <p class="note" style="margin-top: 1rem;">
+          After subscribing you'll receive an invoice and access to your subscriber portal
+          to manage your deliveries.
+        </p>
       </div>
 
       <!-- Delivery note -->
-      <p class="note" style="margin-top: 1.5rem;">
+      <p class="note" style="margin-top: 1rem;">
         Delivery within Toronto every Saturday, bi-weekly. Pickup available at no extra charge.
         Delivery fee: $8 CAD.<br>
         Orders need 2 days to process — subscribe today and your first box arrives
