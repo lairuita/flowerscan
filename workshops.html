@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Intimate ikebana-inspired workshops in Toronto. Maximum 8 people, all materials included. Learn Moribana and Nageire arrangement styles. $85 CAD per person.">
+  <meta name="description" content="Intimate ikebana-inspired workshops in Toronto. Small group, all materials included. $85 CAD per person.">
   <title>flowerscan — Workshops</title>
   <link rel="icon" type="image/svg+xml" href="assets/images/flowerscan-icon-transparent.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,6 +15,19 @@
       --color-text:   #2C2C2C;
       --color-muted:  #9E9E8F;
       --color-border: #DDD8CF;
+    }
+    @keyframes photo-marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .photo-strip--marquee {
+      overflow-x: visible;
+      padding-bottom: 0;
+      width: max-content;
+      animation: photo-marquee 36s linear infinite;
+    }
+    .photo-strip--marquee:hover {
+      animation-play-state: paused;
     }
   </style>
 </head>
@@ -47,7 +60,7 @@
         Learn <span style="white-space: nowrap;">Ikebana-Inspired</span> Arrangement.
       </h1>
       <p class="hero__subtitle" style="margin-bottom: 0; max-width: 48ch;">
-        Intimate, in-person workshops in Toronto. Maximum 8 people.
+        Intimate, in-person workshops in Toronto. Kept to a small group.
         All materials included. No experience necessary — only curiosity.
       </p>
     </div>
@@ -65,17 +78,27 @@
       <h2 id="past-heading" style="margin-top: 1rem; margin-bottom: 1.5rem;">From the room.</h2>
     </div>
 
-    <div style="padding-inline: var(--spacing-md); max-width: var(--max-width); margin-inline: auto; overflow: visible;">
-      <div class="photo-strip" role="list" aria-label="Past event photos">
-        <div class="photo-strip__item" role="listitem"><img src="assets/images/P1.jpg" alt="Past workshop event"></div>
-        <div class="photo-strip__item" role="listitem"><img src="assets/images/P2.jpg" alt="Past workshop event"></div>
-        <div class="photo-strip__item" role="listitem"><img src="assets/images/P3.jpg" alt="Past workshop event"></div>
-        <div class="photo-strip__item" role="listitem"><img src="assets/images/P4.JPG" alt="Past workshop event"></div>
-        <div class="photo-strip__item" role="listitem"><img src="assets/images/P5.jpg" alt="Past workshop event"></div>
-        <div class="photo-strip__item" role="listitem"><img src="assets/images/P6.jpg" alt="Past workshop event"></div>
-        <div class="photo-strip__item" role="listitem"><img src="assets/images/P7.jpg" alt="Past workshop event"></div>
-        <div class="photo-strip__item" role="listitem"><img src="assets/images/P8.jpg" alt="Past workshop event"></div>
-        <div class="photo-strip__item" role="listitem"><img src="assets/images/P9.jpg" alt="Past workshop event"></div>
+    <div style="overflow: hidden; width: 100%;">
+      <div class="photo-strip photo-strip--marquee" aria-label="Past event photos">
+        <div class="photo-strip__item"><img src="assets/images/P1.jpg" alt="Past workshop event"></div>
+        <div class="photo-strip__item"><img src="assets/images/P2.jpg" alt="Past workshop event"></div>
+        <div class="photo-strip__item"><img src="assets/images/P3.jpg" alt="Past workshop event"></div>
+        <div class="photo-strip__item"><img src="assets/images/P4.JPG" alt="Past workshop event"></div>
+        <div class="photo-strip__item"><img src="assets/images/P5.jpg" alt="Past workshop event"></div>
+        <div class="photo-strip__item"><img src="assets/images/P6.jpg" alt="Past workshop event"></div>
+        <div class="photo-strip__item"><img src="assets/images/P7.jpg" alt="Past workshop event"></div>
+        <div class="photo-strip__item"><img src="assets/images/P8.jpg" alt="Past workshop event"></div>
+        <div class="photo-strip__item"><img src="assets/images/P9.jpg" alt="Past workshop event"></div>
+        <!-- duplicate set for seamless loop -->
+        <div class="photo-strip__item" aria-hidden="true"><img src="assets/images/P1.jpg" alt=""></div>
+        <div class="photo-strip__item" aria-hidden="true"><img src="assets/images/P2.jpg" alt=""></div>
+        <div class="photo-strip__item" aria-hidden="true"><img src="assets/images/P3.jpg" alt=""></div>
+        <div class="photo-strip__item" aria-hidden="true"><img src="assets/images/P4.JPG" alt=""></div>
+        <div class="photo-strip__item" aria-hidden="true"><img src="assets/images/P5.jpg" alt=""></div>
+        <div class="photo-strip__item" aria-hidden="true"><img src="assets/images/P6.jpg" alt=""></div>
+        <div class="photo-strip__item" aria-hidden="true"><img src="assets/images/P7.jpg" alt=""></div>
+        <div class="photo-strip__item" aria-hidden="true"><img src="assets/images/P8.jpg" alt=""></div>
+        <div class="photo-strip__item" aria-hidden="true"><img src="assets/images/P9.jpg" alt=""></div>
       </div>
     </div>
   </section>
@@ -102,53 +125,13 @@
             <div style="font-family: var(--font-heading); font-size: var(--text-xl); font-weight: var(--weight-light);">
               Saturday, March 15, 2026
             </div>
-            <div class="card__meta">Moribana &nbsp;&middot;&nbsp; 2:00 – 4:00 pm &nbsp;&middot;&nbsp; 3 spots remaining</div>
+            <div class="card__meta">Hart House &nbsp;&middot;&nbsp; 2:00 – 4:00 pm &nbsp;&middot;&nbsp; a few spots remaining</div>
           </div>
           <button
             class="btn btn--primary btn--sm"
             data-checkout-type="workshop"
             data-workshop-date="2026-03-15"
             aria-label="Book workshop on March 15, 2026"
-          >
-            Book Now
-          </button>
-        </div>
-
-        <div style="border-top: 1px solid var(--color-border);"></div>
-
-        <!-- Workshop date card -->
-        <div class="card card--workshop">
-          <div>
-            <div style="font-family: var(--font-heading); font-size: var(--text-xl); font-weight: var(--weight-light);">
-              Saturday, March 29, 2026
-            </div>
-            <div class="card__meta">Nageire &nbsp;&middot;&nbsp; 2:00 – 4:00 pm &nbsp;&middot;&nbsp; 6 spots remaining</div>
-          </div>
-          <button
-            class="btn btn--primary btn--sm"
-            data-checkout-type="workshop"
-            data-workshop-date="2026-03-29"
-            aria-label="Book workshop on March 29, 2026"
-          >
-            Book Now
-          </button>
-        </div>
-
-        <div style="border-top: 1px solid var(--color-border);"></div>
-
-        <!-- Workshop date card -->
-        <div class="card card--workshop">
-          <div>
-            <div style="font-family: var(--font-heading); font-size: var(--text-xl); font-weight: var(--weight-light);">
-              Saturday, April 12, 2026
-            </div>
-            <div class="card__meta">Moribana &nbsp;&middot;&nbsp; 2:00 – 4:00 pm &nbsp;&middot;&nbsp; 8 spots remaining</div>
-          </div>
-          <button
-            class="btn btn--primary btn--sm"
-            data-checkout-type="workshop"
-            data-workshop-date="2026-04-12"
-            aria-label="Book workshop on April 12, 2026"
           >
             Book Now
           </button>
