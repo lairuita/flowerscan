@@ -71,7 +71,8 @@
         <div class="card">
           <div class="card__label">Bi-weekly subscription</div>
           <h3 class="card__title">Ikebana Box</h3>
-          <div class="card__price">$59 <span style="font-size: var(--text-base); color: var(--color-muted); font-family: var(--font-body); font-weight: var(--weight-light);">CAD / delivery</span></div>
+          <div class="card__price">$59 <span style="font-size: var(--text-base); color: var(--color-muted); font-family: var(--font-body); font-weight: var(--weight-light);">CAD / delivery · pickup</span></div>
+          <div class="card__price" style="font-size: var(--text-xl); margin-top: 0.25rem;">$69 <span style="font-size: var(--text-base); color: var(--color-muted); font-family: var(--font-body); font-weight: var(--weight-light);">CAD / delivery · delivered to your door</span></div>
           <p class="card__note">Recurring. Pause or cancel anytime.</p>
           <ul class="card__list" aria-label="Ikebana Box includes">
             <li>Seasonal stems, curated for ikebana-inspired arrangement</li>
@@ -96,17 +97,26 @@
       </div>
 
       <!-- Subscribe CTA -->
-      <div style="text-align: center; margin-top: 2.5rem; display: flex; flex-direction: column; align-items: center; gap: 0.75rem;">
+      <div style="margin-top: 2.5rem; display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center;">
         <a
           href="https://subscriptions.helcim.com/subscribe/f2in63vbhyyqyjujmuix1tim8nfe9"
           class="btn btn--primary"
-          style="display: inline-block; padding-inline: 2rem;"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Subscribe — Ikebana Box $59/delivery + Starter Kit $65 one-time"
+          aria-label="Subscribe — Pickup, $59 per delivery"
         >
-          Subscribe — Ikebana Box + Starter Kit
+          Pickup — $59 / delivery
         </a>
+        <!-- TODO: replace href with Helcim $69 delivery plan link -->
+        <a
+          href="#"
+          class="btn btn--primary"
+          aria-label="Subscribe — Delivered to your door, $69 per delivery"
+        >
+          Delivered — $69 / delivery
+        </a>
+      </div>
+      <div style="text-align: center; margin-top: 0.75rem;">
         <a
           href="https://flowerscan.helcim.app/login"
           class="btn btn--muted btn--sm"
@@ -122,8 +132,7 @@
         to manage your deliveries.
       </p>
       <p class="note" style="margin-top: 0.75rem; max-width: none;">
-        Delivery within Toronto every Saturday, bi-weekly. Pickup available at no extra charge.
-        Delivery fee: $8 CAD.<br>
+        Bi-weekly, every Saturday. Pickup is free — delivery within Toronto is included in the $69 plan.<br>
         Orders need 2 days to process — subscribe today and your first box arrives
         <span id="first-delivery-date">…</span>.
       </p>
