@@ -24,10 +24,15 @@
       overflow-x: visible;
       padding-bottom: 0;
       width: max-content;
-      animation: photo-marquee 36s linear infinite;
+      animation: photo-marquee 48s linear infinite;
     }
     .photo-strip--marquee:hover {
       animation-play-state: paused;
+    }
+    @media (max-width: 768px) {
+      .photo-strip--marquee {
+        animation-duration: 70s;
+      }
     }
   </style>
 </head>
@@ -90,15 +95,15 @@
         <div class="photo-strip__item"><img src="assets/images/P8.jpg" alt="Past workshop event"></div>
         <div class="photo-strip__item"><img src="assets/images/P9.jpg" alt="Past workshop event"></div>
         <!-- duplicate set for seamless loop -->
-        <div class="photo-strip__item" aria-hidden="true"><img src="assets/images/P1.jpg" alt=""></div>
-        <div class="photo-strip__item" aria-hidden="true"><img src="assets/images/P2.jpg" alt=""></div>
-        <div class="photo-strip__item" aria-hidden="true"><img src="assets/images/P3.jpg" alt=""></div>
-        <div class="photo-strip__item" aria-hidden="true"><img src="assets/images/P4.JPG" alt=""></div>
-        <div class="photo-strip__item" aria-hidden="true"><img src="assets/images/P5.jpg" alt=""></div>
-        <div class="photo-strip__item" aria-hidden="true"><img src="assets/images/P6.jpg" alt=""></div>
-        <div class="photo-strip__item" aria-hidden="true"><img src="assets/images/P7.jpg" alt=""></div>
-        <div class="photo-strip__item" aria-hidden="true"><img src="assets/images/P8.jpg" alt=""></div>
-        <div class="photo-strip__item" aria-hidden="true"><img src="assets/images/P9.jpg" alt=""></div>
+        <div class="photo-strip__item" aria-hidden="true"><img src="assets/images/P1.jpg" alt="" loading="lazy"></div>
+        <div class="photo-strip__item" aria-hidden="true"><img src="assets/images/P2.jpg" alt="" loading="lazy"></div>
+        <div class="photo-strip__item" aria-hidden="true"><img src="assets/images/P3.jpg" alt="" loading="lazy"></div>
+        <div class="photo-strip__item" aria-hidden="true"><img src="assets/images/P4.JPG" alt="" loading="lazy"></div>
+        <div class="photo-strip__item" aria-hidden="true"><img src="assets/images/P5.jpg" alt="" loading="lazy"></div>
+        <div class="photo-strip__item" aria-hidden="true"><img src="assets/images/P6.jpg" alt="" loading="lazy"></div>
+        <div class="photo-strip__item" aria-hidden="true"><img src="assets/images/P7.jpg" alt="" loading="lazy"></div>
+        <div class="photo-strip__item" aria-hidden="true"><img src="assets/images/P8.jpg" alt="" loading="lazy"></div>
+        <div class="photo-strip__item" aria-hidden="true"><img src="assets/images/P9.jpg" alt="" loading="lazy"></div>
       </div>
     </div>
   </section>
