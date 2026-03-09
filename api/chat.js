@@ -1,9 +1,6 @@
 // /api/chat.js
 // Vercel serverless function — AI chat assistant powered by Gemini 1.5 Flash (free tier)
-
-const { GoogleGenerativeAI } = require('@google/generative-ai');
-
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+// Uses REST API directly — no SDK dependency needed
 
 const SYSTEM_PROMPT = `You are a gentle, knowledgeable assistant for flowerscan — an ikebana-inspired flower arrangement service in Toronto, Ontario, Canada.
 
@@ -40,23 +37,38 @@ module.exports = async function handler(req, res) {
     return res.status(400).json({ error: 'Invalid request' });
   }
 
+  const apiKey = process.env.GEMINI_API_KEY;
+  if (!apiKey) {
+    return res.status(500).json({ error: 'API key not configured.' });
+  }
+
+  // Convert messages to Gemini format
+  const contents = messages.slice(-10).map(m => ({
+    role: m.role === 'assistant' ? 'model' : 'user',
+    parts: [{ text: m.content }],
+  }));
+
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+
   try {
-    const model = genAI.getGenerativeModel({
-      model: 'gemini-1.5-flash',
-      systemInstruction: SYSTEM_PROMPT,
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
+        contents,
+        generationConfig: { maxOutputTokens: 400 },
+      }),
     });
 
-    // Convert messages to Gemini format
-    const history = messages.slice(0, -1).map(m => ({
-      role: m.role === 'assistant' ? 'model' : 'user',
-      parts: [{ text: m.content }],
-    }));
+    const data = await response.json();
 
-    const chat = model.startChat({ history });
-    const lastMessage = messages[messages.length - 1].content;
-    const result = await chat.sendMessage(lastMessage);
-    const text = result.response.text();
+    if (!response.ok) {
+      console.error('Gemini error:', data);
+      return res.status(500).json({ error: 'Something went wrong. Please email flowerscan.ca@gmail.com.' });
+    }
 
+    const text = data.candidates?.[0]?.content?.parts?.[0]?.text ?? '';
     res.status(200).json({ reply: text });
   } catch (error) {
     console.error('Chat error:', error);
