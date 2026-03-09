@@ -1,38 +1,83 @@
 // /api/chat.js
-// Vercel serverless function — AI chat assistant powered by Gemini 1.5 Flash (free tier)
-// Uses REST API directly — no SDK dependency needed
+// Vercel serverless function — AI chat assistant powered by Gemini
+// Dynamically reads site content so the bot stays in sync with the site automatically
 
-const SYSTEM_PROMPT = `You are a gentle, knowledgeable assistant for flowerscan — an ikebana-inspired flower arrangement service in Toronto, Ontario, Canada.
+const fs   = require('fs');
+const path = require('path');
 
-About flowerscan:
-- Bi-weekly flower subscription called "Ikebana Box" — curated seasonal stems delivered in Toronto
-- Intimate in-person workshops: small groups, all materials included, no experience needed
-- Philosophy: wabi-sabi — quiet beauty, impermanence, natural imperfection
-- Contact: flowerscan.ca@gmail.com | Instagram: @flower.scan
+// ── HTML helpers ─────────────────────────────────────────────────────────────
 
-Upcoming workshops ($80 CAD + tax per person, all materials provided):
-- Saturday, March 28, 2026 — Coffee Ronin, Scarborough · 11:00 am – 12:30 pm
-- Saturday, April 4, 2026 — Charlie's Tea North York · 11:00 am – 1:30 pm
-- Sunday, April 19, 2026 — Space Coffee · 10:00 – 11:30 am
+function stripTags(html) {
+  return html
+    .replace(/<script[\s\S]*?<\/script>/gi, '')
+    .replace(/<style[\s\S]*?<\/style>/gi, '')
+    .replace(/<!--[\s\S]*?-->/g, '')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&middot;/g, '·')
+    .replace(/&times;/g, '×')
+    .replace(/&[a-z]+;/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
 
-To book a workshop: visit the Workshops page on the site and use the RSVP link.
-To subscribe to Ikebana Box: visit the Ikebana Box page on the site.
+function extractBetween(html, startMarker, endMarker) {
+  const start = html.indexOf(startMarker);
+  if (start === -1) return '';
+  const end = html.indexOf(endMarker, start + startMarker.length);
+  return end === -1 ? html.slice(start) : html.slice(start, end);
+}
 
-Tone: Keep responses short, warm, and unhurried. Simple language. No hype. If asked something you're unsure about, suggest emailing flowerscan.ca@gmail.com.`;
+// ── Content extraction ────────────────────────────────────────────────────────
+
+function getSiteContext() {
+  const root = process.cwd();
+
+  try {
+    // Workshops — extract upcoming dates section
+    const workshopsHtml = fs.readFileSync(path.join(root, 'workshops.html'), 'utf8');
+    const workshopsSection = extractBetween(
+      workshopsHtml,
+      'Upcoming dates',
+      'id="past-heading"'
+    );
+    const workshopsText = stripTags(workshopsSection);
+
+    // Subscription — extract pricing/plan info from meta description + hero
+    const subHtml = fs.readFileSync(path.join(root, 'subscription.html'), 'utf8');
+    const subMeta = (subHtml.match(/<meta name="description" content="([^"]+)"/) || [])[1] || '';
+    const subSection = extractBetween(subHtml, 'id="subscription-heading"', 'id="expect-heading"');
+    const subText = stripTags(subSection);
+
+    return `
+WORKSHOPS (live from site):
+${workshopsText}
+
+IKEBANA BOX SUBSCRIPTION (live from site):
+${subMeta}
+${subText}
+`.trim();
+
+  } catch (e) {
+    console.error('Failed to read site content:', e.message);
+    return '';
+  }
+}
+
+// ── Handler ───────────────────────────────────────────────────────────────────
 
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const origin = req.headers.origin;
+  const origin  = req.headers.origin;
   const allowed = process.env.YOUR_DOMAIN || 'https://www.flowerscan.ca';
   if (origin === allowed || origin === 'http://localhost:3000') {
     res.setHeader('Access-Control-Allow-Origin', origin);
   }
 
   const { messages } = req.body;
-
   if (!messages || !Array.isArray(messages) || messages.length === 0) {
     return res.status(400).json({ error: 'Invalid request' });
   }
@@ -41,6 +86,25 @@ module.exports = async function handler(req, res) {
   if (!apiKey) {
     return res.status(500).json({ error: 'API key not configured.' });
   }
+
+  const siteContext = getSiteContext();
+
+  const systemPrompt = `You are a gentle, knowledgeable assistant for flowerscan — an ikebana-inspired flower arrangement service in Toronto, Ontario, Canada.
+
+About flowerscan:
+- Bi-weekly flower subscription called "Ikebana Box" — curated seasonal stems delivered in Toronto
+- Intimate in-person workshops: small groups, all materials included, no experience needed
+- Philosophy: wabi-sabi — quiet beauty, impermanence, natural imperfection
+- Contact: flowerscan.ca@gmail.com | Instagram: @flower.scan
+
+The following is live content extracted directly from the website — use this as your source of truth:
+
+${siteContext}
+
+To book a workshop: visit the Workshops page and use the RSVP link.
+To subscribe to Ikebana Box: visit the Ikebana Box page.
+
+Tone: Keep responses short, warm, and unhurried. Simple language. No hype. If asked something you're unsure about, suggest emailing flowerscan.ca@gmail.com.`;
 
   // Convert messages to Gemini format
   const contents = messages.slice(-10).map(m => ({
@@ -55,7 +119,7 @@ module.exports = async function handler(req, res) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
+        system_instruction: { parts: [{ text: systemPrompt }] },
         contents,
         generationConfig: { maxOutputTokens: 400 },
       }),
