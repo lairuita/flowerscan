@@ -65,7 +65,8 @@ module.exports = async function handler(req, res) {
 
     if (!response.ok) {
       console.error('Gemini error:', data);
-      return res.status(500).json({ error: 'Something went wrong. Please email flowerscan.ca@gmail.com.' });
+      const geminiMsg = data?.error?.message || JSON.stringify(data);
+      return res.status(500).json({ error: 'Gemini error: ' + geminiMsg });
     }
 
     const text = data.candidates?.[0]?.content?.parts?.[0]?.text ?? '';
