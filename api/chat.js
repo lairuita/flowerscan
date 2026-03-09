@@ -1,9 +1,9 @@
 // /api/chat.js
-// Vercel serverless function — AI chat assistant powered by Claude
+// Vercel serverless function — AI chat assistant powered by Gemini 1.5 Flash (free tier)
 
-const Anthropic = require('@anthropic-ai/sdk');
+const { GoogleGenerativeAI } = require('@google/generative-ai');
 
-const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 const SYSTEM_PROMPT = `You are a gentle, knowledgeable assistant for flowerscan — an ikebana-inspired flower arrangement service in Toronto, Ontario, Canada.
 
@@ -41,14 +41,22 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    const response = await client.messages.create({
-      model: 'claude-opus-4-6',
-      max_tokens: 400,
-      system: SYSTEM_PROMPT,
-      messages: messages.slice(-10),
+    const model = genAI.getGenerativeModel({
+      model: 'gemini-1.5-flash',
+      systemInstruction: SYSTEM_PROMPT,
     });
 
-    const text = response.content.find(b => b.type === 'text')?.text ?? '';
+    // Convert messages to Gemini format
+    const history = messages.slice(0, -1).map(m => ({
+      role: m.role === 'assistant' ? 'model' : 'user',
+      parts: [{ text: m.content }],
+    }));
+
+    const chat = model.startChat({ history });
+    const lastMessage = messages[messages.length - 1].content;
+    const result = await chat.sendMessage(lastMessage);
+    const text = result.response.text();
+
     res.status(200).json({ reply: text });
   } catch (error) {
     console.error('Chat error:', error);
