@@ -73,7 +73,7 @@
     // Toggle button
     var toggle = document.createElement('button');
     toggle.className = 'fc-toggle';
-    toggle.textContent = 'ask';
+    toggle.textContent = '✿ ask';
     toggle.setAttribute('aria-label', 'Open chat assistant');
     toggle.setAttribute('aria-expanded', 'false');
 
