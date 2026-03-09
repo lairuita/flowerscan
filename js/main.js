@@ -205,7 +205,7 @@
 
     var msg = document.createElement('p');
     msg.id            = 'checkout-error-msg';
-    msg.textContent   = 'Something went wrong. Please try again or email hello@flowerscan.ca.';
+    msg.textContent   = 'Something went wrong. Please try again or email flowerscan.ca@gmail.com.';
     msg.style.cssText = [
       'font-size:0.875rem',
       'color:#9E9E8F',
