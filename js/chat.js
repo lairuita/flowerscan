@@ -54,7 +54,7 @@
       '.fc-input-row{display:flex;border-top:1px solid var(--color-border,#DDD8CF);flex-shrink:0;}',
 
       '.fc-input{flex:1;border:none;background:transparent;padding:12px 14px;',
-      'font-family:var(--font-body,"Inter",sans-serif);font-size:13px;',
+      'font-family:var(--font-body,"Inter",sans-serif);font-size:16px;',
       'color:var(--color-text,#2C2C2C);outline:none;}',
       '.fc-input::placeholder{color:var(--color-muted,#9E9E8F);}',
 
@@ -65,7 +65,8 @@
       '.fc-send:disabled{opacity:.35;cursor:default;}',
 
       '@media(max-width:640px){',
-      '.fc-panel{width:calc(100vw - 32px);right:16px;bottom:64px;}',
+      '.fc-panel{width:100%;right:0;bottom:0;top:0;height:100%;',
+      'border-left:none;border-right:none;border-bottom:none;}',
       '.fc-toggle{right:16px;bottom:16px;}}'
     ].join('');
     document.head.appendChild(style);
