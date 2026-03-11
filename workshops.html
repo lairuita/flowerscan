@@ -35,6 +35,11 @@
         animation-duration: 70s;
       }
     }
+    @media (max-width: 640px) {
+      .workshop-grid {
+        grid-template-columns: 1fr !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -59,7 +64,7 @@
   <!-- ============================================================
        Hero — minimal
   ============================================================ -->
-  <section class="hero hero--minimal" aria-labelledby="workshops-heading">
+  <section class="hero hero--minimal" aria-labelledby="workshops-heading" style="padding-bottom: 2rem;">
     <div class="container">
       <span class="label">Workshops</span>
       <h1 id="workshops-heading" style="margin-top: 1rem; margin-bottom: 1.25rem; max-width: 20ch;">
@@ -78,125 +83,56 @@
   <!-- ============================================================
        Upcoming Dates
   ============================================================ -->
-  <section class="section" aria-labelledby="dates-heading">
+  <section class="section" aria-labelledby="dates-heading" style="padding-top: 2rem;">
     <div class="container">
       <span class="label">Upcoming dates</span>
       <h2 id="dates-heading" style="margin-top: 1rem; margin-bottom: 2rem;">Reserve your spot.</h2>
 
-      <!-- What to expect — inline -->
-      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 3rem; padding-bottom: 2.5rem; border-bottom: 1px solid var(--color-border);">
-        <div>
-          <div style="font-size: var(--text-sm); letter-spacing: 0.08em; color: var(--color-muted); margin-bottom: 0.5rem;">01</div>
-          <div style="font-family: var(--font-heading); font-size: var(--text-lg); font-weight: var(--weight-light); margin-bottom: 0.4rem;">The principles</div>
-          <p style="font-size: var(--text-sm); color: var(--color-muted); line-height: 1.6; margin: 0;">Wabi-sabi, line, negative space. A conversation, not a lecture.</p>
-        </div>
-        <div>
-          <div style="font-size: var(--text-sm); letter-spacing: 0.08em; color: var(--color-muted); margin-bottom: 0.5rem;">02</div>
-          <div style="font-family: var(--font-heading); font-size: var(--text-lg); font-weight: var(--weight-light); margin-bottom: 0.4rem;">The practice</div>
-          <p style="font-size: var(--text-sm); color: var(--color-muted); line-height: 1.6; margin: 0;">Hands-on arrangement with seasonal stems.</p>
-        </div>
-        <div>
-          <div style="font-size: var(--text-sm); letter-spacing: 0.08em; color: var(--color-muted); margin-bottom: 0.5rem;">03</div>
-          <div style="font-family: var(--font-heading); font-size: var(--text-lg); font-weight: var(--weight-light); margin-bottom: 0.4rem;">Take it home</div>
-          <p style="font-size: var(--text-sm); color: var(--color-muted); line-height: 1.6; margin: 0;">Your arrangement leaves with you. 1.5 hours well spent.</p>
-        </div>
-      </div>
-
-      <!-- Booking instructions -->
-      <p style="color: var(--color-muted); margin-bottom: 2rem; font-size: var(--text-sm);">$80 CAD + tax &nbsp;&middot;&nbsp; Stems, clippers, and vessel provided. Your flowers go home with you — kenzan and vessel stay. A kenzan is available to add on for $30.</p>
-
-      <div style="display: flex; flex-direction: column; gap: 0;">
+      <!-- 3-column poster grid -->
+      <div class="workshop-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 2rem;">
 
         <!-- March 28 -->
-        <div class="card card--workshop" id="march-28">
-          <div>
-            <div style="font-family: var(--font-heading); font-size: var(--text-xl); font-weight: var(--weight-light);">
-              Saturday, March 28, 2026
-            </div>
-            <div class="card__meta">Coffee Ronin, Scarborough &nbsp;&middot;&nbsp; 11:00 am – 12:30 pm &nbsp;&middot;&nbsp; a few spots remaining</div>
-            <div class="card__meta" style="margin-top: 0.15rem;">3101 Kenny Rd Unit A8, Scarborough, ON M1V 4Y1</div>
-          </div>
-          <div style="display: flex; flex-direction: column; gap: 0.5rem; align-items: stretch;">
-            <a
-              href="https://partiful.com/e/lmYwKyBGOlbYXncciYSr?c=D1UJIsAO"
-              class="btn btn--primary btn--sm"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="RSVP for workshop on March 28, 2026"
-              style="text-align: center;"
-            >
-              Step 1 — RSVP
-            </a>
-            <stripe-buy-button
-              buy-button-id="buy_btn_1T9d3b4MQNh5Ckwi4FsVz376"
-              publishable-key="pk_live_51T9crW4MQNh5Ckwi3lbeb7F8gIf9Kds6LMBsjLgrmqOBftwl4zLmclbgrSUBN7Zc24tmzHgnC6EG3I9tDU9p35Ng00N7vbcyAE"
-            ></stripe-buy-button>
-          </div>
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+          <img
+            src="assets/events/march28.png"
+            alt="Workshop — Saturday, March 28, 2026 at Coffee Ronin, Scarborough"
+            style="width: 100%; display: block;"
+          >
+          <stripe-buy-button
+            buy-button-id="buy_btn_1T9d3b4MQNh5Ckwi4FsVz376"
+            publishable-key="pk_live_51T9crW4MQNh5Ckwi3lbeb7F8gIf9Kds6LMBsjLgrmqOBftwl4zLmclbgrSUBN7Zc24tmzHgnC6EG3I9tDU9p35Ng00N7vbcyAE"
+          ></stripe-buy-button>
         </div>
-
-        <div style="border-top: 1px solid var(--color-border);"></div>
 
         <!-- April 4 -->
-        <div class="card card--workshop">
-          <div>
-            <div style="font-family: var(--font-heading); font-size: var(--text-xl); font-weight: var(--weight-light);">
-              Saturday, April 4, 2026
-            </div>
-            <div class="card__meta">Charlie's Tea North York &nbsp;&middot;&nbsp; 11:00 am – 1:30 pm</div>
-            <div class="card__meta" style="margin-top: 0.15rem;">5 Northtown Way Unit 2, North York, ON M2N 7A1</div>
-          </div>
-          <div style="display: flex; flex-direction: column; gap: 0.5rem; align-items: stretch;">
-            <a
-              href="https://partiful.com/e/MtSvQtdV2mx2ku8nscyI"
-              class="btn btn--primary btn--sm"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="RSVP for workshop on April 4, 2026"
-              style="text-align: center;"
-            >
-              Step 1 — RSVP
-            </a>
-            <stripe-buy-button
-              buy-button-id="buy_btn_1T9d3b4MQNh5Ckwi4FsVz376"
-              publishable-key="pk_live_51T9crW4MQNh5Ckwi3lbeb7F8gIf9Kds6LMBsjLgrmqOBftwl4zLmclbgrSUBN7Zc24tmzHgnC6EG3I9tDU9p35Ng00N7vbcyAE"
-            ></stripe-buy-button>
-          </div>
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+          <img
+            src="assets/events/april4.png"
+            alt="Workshop — Saturday, April 4, 2026 at Charlie's Tea, North York"
+            style="width: 100%; display: block;"
+          >
+          <stripe-buy-button
+            buy-button-id="buy_btn_1T9d3b4MQNh5Ckwi4FsVz376"
+            publishable-key="pk_live_51T9crW4MQNh5Ckwi3lbeb7F8gIf9Kds6LMBsjLgrmqOBftwl4zLmclbgrSUBN7Zc24tmzHgnC6EG3I9tDU9p35Ng00N7vbcyAE"
+          ></stripe-buy-button>
         </div>
-
-        <div style="border-top: 1px solid var(--color-border);"></div>
 
         <!-- April 19 -->
-        <div class="card card--workshop">
-          <div>
-            <div style="font-family: var(--font-heading); font-size: var(--text-xl); font-weight: var(--weight-light);">
-              Sunday, April 19, 2026
-            </div>
-            <div class="card__meta">Space Coffee &nbsp;&middot;&nbsp; 10:00 – 11:30 am</div>
-            <div class="card__meta" style="margin-top: 0.15rem;">5463 Yonge St 2nd Floor, Toronto, ON M2N 5S1</div>
-          </div>
-          <div style="display: flex; flex-direction: column; gap: 0.5rem; align-items: stretch;">
-            <a
-              href="https://partiful.com/e/Tpmf2dDzUIyeQHkzcUWz"
-              class="btn btn--primary btn--sm"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="RSVP for workshop on April 19, 2026"
-              style="text-align: center;"
-            >
-              Step 1 — RSVP
-            </a>
-            <stripe-buy-button
-              buy-button-id="buy_btn_1T9d3b4MQNh5Ckwi4FsVz376"
-              publishable-key="pk_live_51T9crW4MQNh5Ckwi3lbeb7F8gIf9Kds6LMBsjLgrmqOBftwl4zLmclbgrSUBN7Zc24tmzHgnC6EG3I9tDU9p35Ng00N7vbcyAE"
-            ></stripe-buy-button>
-          </div>
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+          <img
+            src="assets/events/april19.png"
+            alt="Workshop — Sunday, April 19, 2026 at Space Coffee, Toronto"
+            style="width: 100%; display: block;"
+          >
+          <stripe-buy-button
+            buy-button-id="buy_btn_1T9d3b4MQNh5Ckwi4FsVz376"
+            publishable-key="pk_live_51T9crW4MQNh5Ckwi3lbeb7F8gIf9Kds6LMBsjLgrmqOBftwl4zLmclbgrSUBN7Zc24tmzHgnC6EG3I9tDU9p35Ng00N7vbcyAE"
+          ></stripe-buy-button>
         </div>
-
-        <div style="border-top: 1px solid var(--color-border);"></div>
 
       </div>
 
-      <p class="note" style="margin-top: 2rem;">
+      <p class="note" style="margin-top: 1rem;">
         Private group workshops available for up to 8 people.
         <a href="mailto:flowerscan.ca@gmail.com">Contact us to inquire.</a>
       </p>
