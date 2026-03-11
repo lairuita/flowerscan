@@ -35,6 +35,9 @@
         animation-duration: 70s;
       }
     }
+    stripe-buy-button {
+      filter: grayscale(1) contrast(1.1);
+    }
   </style>
 </head>
 <body>
@@ -76,22 +79,39 @@
 
 
   <!-- ============================================================
-       Upcoming Dates + Pricing (merged)
+       Upcoming Dates
   ============================================================ -->
   <section class="section" aria-labelledby="dates-heading">
     <div class="container">
       <span class="label">Upcoming dates</span>
-      <h2 id="dates-heading" style="margin-top: 1rem; margin-bottom: 0.5rem;">Reserve your spot.</h2>
-      <p style="margin-bottom: 0.5rem;">
-        RSVP first, then pay to secure your spot.
-      </p>
-      <p style="color: var(--color-muted); margin-bottom: 2.5rem; font-size: var(--text-sm);">
-        $80 CAD + tax &nbsp;&middot;&nbsp; All materials provided.
-      </p>
+      <h2 id="dates-heading" style="margin-top: 1rem; margin-bottom: 2rem;">Reserve your spot.</h2>
+
+      <!-- What to expect — inline -->
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 3rem; padding-bottom: 2.5rem; border-bottom: 1px solid var(--color-border);">
+        <div>
+          <div style="font-size: var(--text-sm); letter-spacing: 0.08em; color: var(--color-muted); margin-bottom: 0.5rem;">01</div>
+          <div style="font-family: var(--font-heading); font-size: var(--text-lg); font-weight: var(--weight-light); margin-bottom: 0.4rem;">The principles</div>
+          <p style="font-size: var(--text-sm); color: var(--color-muted); line-height: 1.6; margin: 0;">Wabi-sabi, line, negative space. A conversation, not a lecture.</p>
+        </div>
+        <div>
+          <div style="font-size: var(--text-sm); letter-spacing: 0.08em; color: var(--color-muted); margin-bottom: 0.5rem;">02</div>
+          <div style="font-family: var(--font-heading); font-size: var(--text-lg); font-weight: var(--weight-light); margin-bottom: 0.4rem;">The practice</div>
+          <p style="font-size: var(--text-sm); color: var(--color-muted); line-height: 1.6; margin: 0;">Hands-on arrangement with seasonal stems. All materials provided.</p>
+        </div>
+        <div>
+          <div style="font-size: var(--text-sm); letter-spacing: 0.08em; color: var(--color-muted); margin-bottom: 0.5rem;">03</div>
+          <div style="font-family: var(--font-heading); font-size: var(--text-lg); font-weight: var(--weight-light); margin-bottom: 0.4rem;">Take it home</div>
+          <p style="font-size: var(--text-sm); color: var(--color-muted); line-height: 1.6; margin: 0;">Your arrangement leaves with you. 1.5 hours well spent.</p>
+        </div>
+      </div>
+
+      <!-- Booking instructions -->
+      <p style="margin-bottom: 0.4rem;">RSVP first, then pay to secure your spot.</p>
+      <p style="color: var(--color-muted); margin-bottom: 2rem; font-size: var(--text-sm);">$80 CAD + tax &nbsp;&middot;&nbsp; All materials provided.</p>
 
       <div style="display: flex; flex-direction: column; gap: 0;">
 
-        <!-- Workshop date card -->
+        <!-- March 28 -->
         <div class="card card--workshop" id="march-28">
           <div>
             <div style="font-family: var(--font-heading); font-size: var(--text-xl); font-weight: var(--weight-light);">
@@ -120,7 +140,7 @@
 
         <div style="border-top: 1px solid var(--color-border);"></div>
 
-        <!-- Workshop date card -->
+        <!-- April 4 -->
         <div class="card card--workshop">
           <div>
             <div style="font-family: var(--font-heading); font-size: var(--text-xl); font-weight: var(--weight-light);">
@@ -140,22 +160,16 @@
             >
               Step 1 — RSVP
             </a>
-            <a
-              href="https://flowerscan.helcim.app/quick-order?product=1636451"
-              class="btn btn--secondary btn--sm"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Pay for workshop on April 4, 2026"
-              style="text-align: center;"
-            >
-              Step 2 — Pay
-            </a>
+            <stripe-buy-button
+              buy-button-id="buy_btn_1T9d3b4MQNh5Ckwi4FsVz376"
+              publishable-key="pk_live_51T9crW4MQNh5Ckwi3lbeb7F8gIf9Kds6LMBsjLgrmqOBftwl4zLmclbgrSUBN7Zc24tmzHgnC6EG3I9tDU9p35Ng00N7vbcyAE"
+            ></stripe-buy-button>
           </div>
         </div>
 
         <div style="border-top: 1px solid var(--color-border);"></div>
 
-        <!-- Workshop date card -->
+        <!-- April 19 -->
         <div class="card card--workshop">
           <div>
             <div style="font-family: var(--font-heading); font-size: var(--text-xl); font-weight: var(--weight-light);">
@@ -175,16 +189,10 @@
             >
               Step 1 — RSVP
             </a>
-            <a
-              href="https://flowerscan.helcim.app/quick-order?product=1636451"
-              class="btn btn--secondary btn--sm"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Pay for workshop on April 19, 2026"
-              style="text-align: center;"
-            >
-              Step 2 — Pay
-            </a>
+            <stripe-buy-button
+              buy-button-id="buy_btn_1T9d3b4MQNh5Ckwi4FsVz376"
+              publishable-key="pk_live_51T9crW4MQNh5Ckwi3lbeb7F8gIf9Kds6LMBsjLgrmqOBftwl4zLmclbgrSUBN7Zc24tmzHgnC6EG3I9tDU9p35Ng00N7vbcyAE"
+            ></stripe-buy-button>
           </div>
         </div>
 
@@ -232,46 +240,6 @@
         <div class="photo-strip__item" aria-hidden="true"><img src="assets/images/P7.jpg" alt="" loading="lazy"></div>
         <div class="photo-strip__item" aria-hidden="true"><img src="assets/images/P8.jpg" alt="" loading="lazy"></div>
         <div class="photo-strip__item" aria-hidden="true"><img src="assets/images/P9.jpg" alt="" loading="lazy"></div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="divider" style="margin: 0; border-top: 1px solid var(--color-border);">
-
-
-  <!-- ============================================================
-       What to Expect
-  ============================================================ -->
-  <section class="section" aria-labelledby="expect-heading">
-    <div class="container">
-      <span class="label">What to expect</span>
-      <h2 id="expect-heading" style="margin-top: 1rem; margin-bottom: 3rem;">1.5 hours. One arrangement.</h2>
-
-      <div class="steps">
-        <div class="step">
-          <div class="step__number">01</div>
-          <h3 class="step__title">The principles</h3>
-          <p class="step__body">
-            An introduction to ikebana-inspired arrangement — wabi-sabi, line, negative space,
-            and the role of silence in composition. No lecture. A conversation.
-          </p>
-        </div>
-        <div class="step">
-          <div class="step__number">02</div>
-          <h3 class="step__title">The practice</h3>
-          <p class="step__body">
-            Hands-on arrangement with seasonal stems.
-            All materials provided: stems, kenzan or vessel, clippers.
-          </p>
-        </div>
-        <div class="step">
-          <div class="step__number">03</div>
-          <h3 class="step__title">Take it home</h3>
-          <p class="step__body">
-            Your arrangement leaves with you.
-            1.5 hours well spent.
-          </p>
-        </div>
       </div>
     </div>
   </section>
