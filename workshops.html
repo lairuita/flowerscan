@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="css/style.css">
+  <script async src="https://js.stripe.com/v3/buy-button.js"></script>
   <style>
     body {
       --color-bg:     #F5F0EA;
@@ -91,7 +92,7 @@
       <div style="display: flex; flex-direction: column; gap: 0;">
 
         <!-- Workshop date card -->
-        <div class="card card--workshop">
+        <div class="card card--workshop" id="march-28">
           <div>
             <div style="font-family: var(--font-heading); font-size: var(--text-xl); font-weight: var(--weight-light);">
               Saturday, March 28, 2026
@@ -110,16 +111,10 @@
             >
               Step 1 — RSVP
             </a>
-            <a
-              href="https://flowerscan.helcim.app/quick-order?product=1636451"
-              class="btn btn--secondary btn--sm"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Pay for workshop on March 28, 2026"
-              style="text-align: center;"
-            >
-              Step 2 — Pay
-            </a>
+            <stripe-buy-button
+              buy-button-id="buy_btn_1T9d3b4MQNh5Ckwi4FsVz376"
+              publishable-key="pk_live_51T9crW4MQNh5Ckwi3lbeb7F8gIf9Kds6LMBsjLgrmqOBftwl4zLmclbgrSUBN7Zc24tmzHgnC6EG3I9tDU9p35Ng00N7vbcyAE"
+            ></stripe-buy-button>
           </div>
         </div>
 
