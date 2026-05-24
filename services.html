@@ -18,45 +18,44 @@
     gtag('config', 'G-ZRC0C20C1X');
   </script>
   <style>
-    .services-list {
+    .services-grid {
       list-style: none;
       padding: 0;
       margin: 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
     }
-    .services-list__item {
-      display: flex;
-      align-items: baseline;
-      gap: 1.5rem;
+    .services-grid__item {
       padding: 1.75rem 0;
-      border-bottom: 1px solid var(--color-border);
-    }
-    .services-list__item:first-child {
       border-top: 1px solid var(--color-border);
     }
-    .services-list__number {
+    .services-grid__number {
       font-size: var(--text-sm);
       letter-spacing: 0.08em;
       color: var(--color-muted);
-      min-width: 2rem;
-      flex-shrink: 0;
+      margin-bottom: 0.5rem;
     }
-    .services-list__name {
+    .services-grid__name {
       font-family: var(--font-heading);
       font-size: var(--text-xl);
       font-weight: var(--weight-light);
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.5rem;
     }
-    .services-list__desc {
+    .services-grid__desc {
       font-size: var(--text-sm);
       color: var(--color-muted);
       line-height: 1.7;
       margin: 0;
-      max-width: 52ch;
     }
-    @media (max-width: 640px) {
-      .services-list__item {
-        flex-direction: column;
-        gap: 0.5rem;
+    @media (max-width: 768px) {
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 480px) {
+      .services-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -92,11 +91,6 @@
       <h1 id="services-heading" style="margin-top: 1rem; margin-bottom: 1.5rem; max-width: 16ch;">
         our services.
       </h1>
-      <p class="prose-wide" style="max-width: 56ch; margin-bottom: 2rem;">
-        An unconventional approach to floral styling and design, rooted in modern ikebana.
-        We work with forward-thinking brands and businesses to craft unforgettable experiences —
-        transforming moments into lasting impressions.
-      </p>
       <p class="prose-wide" style="max-width: 56ch; color: var(--color-muted);">
         Let's collaborate to make your vision a reality.
       </p>
@@ -112,62 +106,52 @@
   <section class="section" aria-labelledby="list-heading" style="padding-top: 2.5rem;">
     <div class="container">
 
-      <ul class="services-list" role="list">
+      <ul class="services-grid" role="list">
 
-        <li class="services-list__item">
-          <div class="services-list__number">01</div>
-          <div>
-            <div class="services-list__name">Brand activations</div>
-            <p class="services-list__desc">
-              Pop-up floral bars, gifting stations, and in-store activations for product launches,
-              seasonal campaigns, and retail moments. We bring the flowers; your customers take the memory home.
-            </p>
-          </div>
+        <li class="services-grid__item">
+          <div class="services-grid__number">01</div>
+          <div class="services-grid__name">Brand activations</div>
+          <p class="services-grid__desc">
+            Pop-up floral bars, gifting stations, and in-store activations for product launches,
+            seasonal campaigns, and retail moments. We bring the flowers; your customers take the memory home.
+          </p>
         </li>
 
-        <li class="services-list__item">
-          <div class="services-list__number">02</div>
-          <div>
-            <div class="services-list__name">Corporate events</div>
-            <p class="services-list__desc">
-              Table arrangements, reception florals, and event styling for corporate gatherings,
-              dinners, and hospitality events. Coordinated to your brand palette and setting.
-            </p>
-          </div>
+        <li class="services-grid__item">
+          <div class="services-grid__number">02</div>
+          <div class="services-grid__name">Corporate events</div>
+          <p class="services-grid__desc">
+            Table arrangements, reception florals, and event styling for corporate gatherings,
+            dinners, and hospitality events. Coordinated to your brand palette and setting.
+          </p>
         </li>
 
-        <li class="services-list__item">
-          <div class="services-list__number">03</div>
-          <div>
-            <div class="services-list__name">Installations</div>
-            <p class="services-list__desc">
-              Larger-scale floral statements for retail windows, exhibition spaces, and branded environments.
-              Designed to photograph well and hold meaning in person.
-            </p>
-          </div>
+        <li class="services-grid__item">
+          <div class="services-grid__number">03</div>
+          <div class="services-grid__name">Installations</div>
+          <p class="services-grid__desc">
+            Larger-scale floral statements for retail windows, exhibition spaces, and branded environments.
+            Designed to photograph well and hold meaning in person.
+          </p>
         </li>
 
-        <li class="services-list__item">
-          <div class="services-list__number">04</div>
-          <div>
-            <div class="services-list__name">Corporate gifting</div>
-            <p class="services-list__desc">
-              Custom bouquets and arrangements for client gifting, staff appreciation, and
-              brand partnerships. Individually wrapped, branded on request.
-            </p>
-          </div>
+        <li class="services-grid__item">
+          <div class="services-grid__number">04</div>
+          <div class="services-grid__name">Corporate gifting</div>
+          <p class="services-grid__desc">
+            Custom bouquets and arrangements for client gifting, staff appreciation, and
+            brand partnerships. Individually wrapped, branded on request.
+          </p>
         </li>
 
-        <li class="services-list__item">
-          <div class="services-list__number">05</div>
-          <div>
-            <div class="services-list__name">Workshops</div>
-            <p class="services-list__desc">
-              Private ikebana-inspired workshops for teams, brand events, and client experiences.
-              Up to 12 guests. All materials provided — stems, vessels, tools.
-              <a href="workshops.html" style="color: inherit; text-decoration: underline; text-underline-offset: 3px;">See public dates.</a>
-            </p>
-          </div>
+        <li class="services-grid__item">
+          <div class="services-grid__number">05</div>
+          <div class="services-grid__name">Workshops</div>
+          <p class="services-grid__desc">
+            Private ikebana-inspired workshops for teams, brand events, and client experiences.
+            Up to 12 guests. All materials provided — stems, vessels, tools.
+            <a href="workshops.html" style="color: inherit; text-decoration: underline; text-underline-offset: 3px;">See public dates.</a>
+          </p>
         </li>
 
       </ul>
