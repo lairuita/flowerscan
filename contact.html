@@ -18,15 +18,22 @@
     gtag('config', 'G-ZRC0C20C1X');
   </script>
   <style>
-    body {
-      --color-bg:     #F5F0EA;
-      --color-text:   #2C2C2C;
-      --color-muted:  #9E9E8F;
-      --color-border: #DDD8CF;
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: var(--spacing-xl);
+      align-items: start;
+    }
+    .contact-layout__portrait img {
+      width: 100%;
+      display: block;
+      filter: saturate(0.75);
+    }
+    .contact-layout__bio p + p {
+      margin-top: var(--spacing-md);
     }
 
     .contact-form {
-      max-width: 560px;
       margin-top: 2.5rem;
     }
     .form-row {
@@ -60,6 +67,11 @@
       border-radius: 0;
       -webkit-appearance: none;
     }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: var(--color-muted);
+      opacity: 0.6;
+    }
     .form-group input:focus,
     .form-group textarea:focus {
       border-bottom-color: var(--color-text);
@@ -80,6 +92,16 @@
       margin-top: 1rem;
       min-height: 1.5rem;
     }
+    @media (max-width: 768px) {
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+      .contact-layout__portrait img {
+        max-height: 420px;
+        object-fit: cover;
+        object-position: top;
+      }
+    }
     @media (max-width: 500px) {
       .form-row {
         grid-template-columns: 1fr;
@@ -94,15 +116,15 @@
   ============================================================ -->
   <nav class="nav" role="navigation" aria-label="Main navigation">
     <div class="nav__inner">
-      <a href="index.html" class="nav__logo"><img src="assets/images/flowerscan-icon-transparent.svg" alt="" aria-hidden="true" class="nav__logo-icon">flowerscan</a>
+      <a href="index.html" class="nav__logo"><img src="assets/images/flowerscan-icon-white.svg" alt="" aria-hidden="true" class="nav__logo-icon">flowerscan</a>
       <ul class="nav__links" role="list">
         <li><a href="index.html" class="nav__link">Home</a></li>
         <li><a href="bouquets.html" class="nav__link">Bouquets</a></li>
         <li style="display:none"><a href="subscription.html" class="nav__link">Ikebana Box</a></li>
         <li><a href="workshops.html" class="nav__link">Workshops</a></li>
         <li><a href="services.html" class="nav__link">Services</a></li>
-        <li><a href="gallery.html" class="nav__link">Gallery</a></li>
-        <li><a href="about.html" class="nav__link">About</a></li>
+        <li style="display:none"><a href="gallery.html" class="nav__link">Gallery</a></li>
+        <li style="display:none"><a href="about.html" class="nav__link">About</a></li>
         <li><a href="contact.html" class="nav__link nav__link--active">Contact</a></li>
       </ul>
     </div>
@@ -124,41 +146,88 @@
     </div>
   </section>
 
+  <hr class="divider" style="margin: 0; border-top: 1px solid var(--color-border);">
+
 
   <!-- ============================================================
-       Contact form
+       About — Portrait + Bio + Form
   ============================================================ -->
-  <section class="section" aria-label="Contact form" style="padding-top: 2.5rem;">
+  <section class="section" aria-label="About and contact">
     <div class="container">
+      <div class="contact-layout">
 
-      <form class="contact-form" id="contact-form" novalidate>
+        <!-- Left: Portrait -->
+        <div class="contact-layout__portrait">
+          <img src="assets/images/Ray.JPG" alt="Ray, founder of flowerscan">
+          <p style="font-size: var(--text-sm); color: var(--color-muted); margin-top: 0.75rem;">
+            Ray &nbsp;&middot;&nbsp; Toronto, ON
+          </p>
+        </div>
 
-        <div class="form-row">
-          <div class="form-group">
-            <label for="first-name">First Name <span class="form-required" aria-hidden="true">*</span></label>
-            <input type="text" id="first-name" name="firstName" required autocomplete="given-name" placeholder="">
+        <!-- Right: Bio + Form -->
+        <div>
+          <div class="contact-layout__bio">
+            <h2 style="margin-bottom: 1.5rem;">The person<br>behind the flowers.</h2>
+
+            <p>
+              I came to ikebana through a love of flowers and a restlessness
+              I didn't yet have words for. What I found was a practice that
+              asked nothing of me except to be present with what was in front
+              of me — a stem, a vessel, a moment.
+            </p>
+
+            <p>
+              Every arrangement is sourced by hand —
+              stems chosen for how they want to be placed, not just how
+              they look. Whether it's a custom bouquet, a brand activation,
+              or a private workshop, the intention is the same.
+            </p>
+
+            <p style="color: var(--color-muted);">
+              The name means two things at once. <em>flower scan</em> — the way
+              arrangement scans your inner state and shows it back to you.
+              And <em>Flowers can</em> — possibility, permission, the belief that
+              beauty is not a specialist's domain.
+            </p>
           </div>
-          <div class="form-group">
-            <label for="last-name">Last Name <span class="form-required" aria-hidden="true">*</span></label>
-            <input type="text" id="last-name" name="lastName" required autocomplete="family-name" placeholder="">
-          </div>
+
+          <hr class="divider" style="border-top: 1px solid var(--color-border); margin: 2rem 0;">
+
+          <h3 style="margin-bottom: 0.5rem;">Send a message.</h3>
+          <p style="font-size: var(--text-sm); color: var(--color-muted); margin-bottom: 0;">
+            For bouquet orders, event enquiries, or just to say hello.
+          </p>
+
+          <form class="contact-form" id="contact-form" novalidate>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="first-name">First Name <span class="form-required" aria-hidden="true">*</span></label>
+                <input type="text" id="first-name" name="firstName" required autocomplete="given-name">
+              </div>
+              <div class="form-group">
+                <label for="last-name">Last Name <span class="form-required" aria-hidden="true">*</span></label>
+                <input type="text" id="last-name" name="lastName" required autocomplete="family-name">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email <span class="form-required" aria-hidden="true">*</span></label>
+              <input type="email" id="email" name="email" required autocomplete="email">
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message <span class="form-required" aria-hidden="true">*</span></label>
+              <textarea id="message" name="message" required placeholder="Tell us about your project — the occasion, scale, and feeling you're after."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn--primary" style="margin-top: 0.5rem;">Submit</button>
+            <div class="form-status" id="form-status" aria-live="polite"></div>
+
+          </form>
         </div>
 
-        <div class="form-group">
-          <label for="email">Email <span class="form-required" aria-hidden="true">*</span></label>
-          <input type="email" id="email" name="email" required autocomplete="email" placeholder="">
-        </div>
-
-        <div class="form-group">
-          <label for="message">Message <span class="form-required" aria-hidden="true">*</span></label>
-          <textarea id="message" name="message" required placeholder="Tell us about your project — the occasion, scale, and feeling you're after."></textarea>
-        </div>
-
-        <button type="submit" class="btn btn--primary" style="margin-top: 0.5rem;">Submit</button>
-        <div class="form-status" id="form-status" aria-live="polite"></div>
-
-      </form>
-
+      </div>
     </div>
   </section>
 
@@ -217,7 +286,7 @@
 
       const submitBtn = form.querySelector('[type="submit"]');
       submitBtn.disabled = true;
-      status.textContent = 'Sending…';
+      status.textContent = 'Sending\u2026';
 
       try {
         const res = await fetch('/api/contact', {
