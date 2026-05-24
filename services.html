@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="flowerscan services — brand activations, pop-up florals, corporate gifting, and installations in Toronto and beyond. Ikebana-inspired floral design for forward-thinking brands.">
+  <title>Services — flowerscan Toronto</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/flowerscan-icon-transparent.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZRC0C20C1X"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZRC0C20C1X');
+  </script>
+  <style>
+    body {
+      --color-bg:     #F5F0EA;
+      --color-text:   #2C2C2C;
+      --color-muted:  #9E9E8F;
+      --color-border: #DDD8CF;
+    }
+    .services-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .services-list__item {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      padding: 1.75rem 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .services-list__item:first-child {
+      border-top: 1px solid var(--color-border);
+    }
+    .services-list__number {
+      font-size: var(--text-sm);
+      letter-spacing: 0.08em;
+      color: var(--color-muted);
+      min-width: 2rem;
+      flex-shrink: 0;
+    }
+    .services-list__content {
+      flex: 1;
+    }
+    .services-list__name {
+      font-family: var(--font-heading);
+      font-size: var(--text-xl);
+      font-weight: var(--weight-light);
+      margin-bottom: 0.4rem;
+    }
+    .services-list__desc {
+      font-size: var(--text-sm);
+      color: var(--color-muted);
+      line-height: 1.7;
+      margin: 0;
+      max-width: 52ch;
+    }
+    @media (max-width: 640px) {
+      .services-list__item {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       Navigation
+  ============================================================ -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo"><img src="assets/images/flowerscan-icon-transparent.svg" alt="" aria-hidden="true" class="nav__logo-icon">flowerscan</a>
+      <ul class="nav__links" role="list">
+        <li><a href="index.html" class="nav__link">Home</a></li>
+        <li><a href="bouquets.html" class="nav__link">Bouquets</a></li>
+        <li style="display:none"><a href="subscription.html" class="nav__link">Ikebana Box</a></li>
+        <li><a href="workshops.html" class="nav__link">Workshops</a></li>
+        <li><a href="services.html" class="nav__link nav__link--active">Services</a></li>
+        <li><a href="gallery.html" class="nav__link">Gallery</a></li>
+        <li><a href="about.html" class="nav__link">About</a></li>
+        <li><a href="contact.html" class="nav__link">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <!-- ============================================================
+       Hero — statement
+  ============================================================ -->
+  <section class="hero hero--minimal" aria-labelledby="services-heading" style="padding-bottom: 2.5rem;">
+    <div class="container">
+      <span class="label">Services</span>
+      <h1 id="services-heading" style="margin-top: 1rem; margin-bottom: 1.5rem; max-width: 16ch;">
+        our services.
+      </h1>
+      <p class="prose-wide" style="max-width: 56ch; margin-bottom: 2rem;">
+        An unconventional approach to floral styling and design, rooted in modern ikebana.
+        We work with forward-thinking brands and businesses to craft unforgettable experiences —
+        transforming moments into lasting impressions.
+      </p>
+      <p class="prose-wide" style="max-width: 56ch; color: var(--color-muted);">
+        Let's collaborate to make your vision a reality.
+      </p>
+    </div>
+  </section>
+
+  <hr class="divider" style="margin: 0; border-top: 1px solid var(--color-border);">
+
+
+  <!-- ============================================================
+       Services list
+  ============================================================ -->
+  <section class="section" aria-labelledby="list-heading" style="padding-top: 2.5rem;">
+    <div class="container">
+
+      <ul class="services-list" role="list">
+
+        <li class="services-list__item">
+          <div class="services-list__number">01</div>
+          <div class="services-list__content">
+            <div class="services-list__name">Brand activations</div>
+            <p class="services-list__desc">
+              Pop-up floral bars, gifting stations, and in-store activations for product launches,
+              seasonal campaigns, and retail moments. We bring the flowers; your customers take the memory home.
+            </p>
+          </div>
+        </li>
+
+        <li class="services-list__item">
+          <div class="services-list__number">02</div>
+          <div class="services-list__content">
+            <div class="services-list__name">Corporate events</div>
+            <p class="services-list__desc">
+              Table arrangements, reception florals, and event styling for corporate gatherings,
+              dinners, and hospitality events. Coordinated to your brand palette and setting.
+            </p>
+          </div>
+        </li>
+
+        <li class="services-list__item">
+          <div class="services-list__number">03</div>
+          <div class="services-list__content">
+            <div class="services-list__name">Installations</div>
+            <p class="services-list__desc">
+              Larger-scale floral statements for retail windows, exhibition spaces, and branded environments.
+              Designed to photograph well and hold meaning in person.
+            </p>
+          </div>
+        </li>
+
+        <li class="services-list__item">
+          <div class="services-list__number">04</div>
+          <div class="services-list__content">
+            <div class="services-list__name">Corporate gifting</div>
+            <p class="services-list__desc">
+              Custom bouquets and arrangements for client gifting, staff appreciation, and
+              brand partnerships. Individually wrapped, branded on request.
+            </p>
+          </div>
+        </li>
+
+        <li class="services-list__item">
+          <div class="services-list__number">05</div>
+          <div class="services-list__content">
+            <div class="services-list__name">Workshops</div>
+            <p class="services-list__desc">
+              Private ikebana-inspired workshops for teams, brand events, and client experiences.
+              Up to 12 guests. All materials provided — stems, vessels, tools.
+              <a href="workshops.html" style="color: inherit; text-decoration: underline; text-underline-offset: 3px;">See public dates.</a>
+            </p>
+          </div>
+        </li>
+
+      </ul>
+
+    </div>
+  </section>
+
+  <hr class="divider" style="margin: 0; border-top: 1px solid var(--color-border);">
+
+
+  <!-- ============================================================
+       Past work — text only (NDA)
+  ============================================================ -->
+  <section class="section section--sm" aria-labelledby="past-heading">
+    <div class="container">
+      <span class="label">Past work</span>
+      <h2 id="past-heading" style="margin-top: 1rem; margin-bottom: 1rem;">Trusted by brands.</h2>
+      <p class="prose-wide" style="color: var(--color-muted); max-width: 52ch;">
+        We've partnered with brands across fashion, beauty, and lifestyle for seasonal activations
+        and gifting programmes. Most of our brand work is under NDA — reach out and we'll share
+        what we can.
+      </p>
+    </div>
+  </section>
+
+  <hr class="divider" style="margin: 0; border-top: 1px solid var(--color-border);">
+
+
+  <!-- ============================================================
+       CTA
+  ============================================================ -->
+  <section class="section section--sm" aria-label="Get in touch">
+    <div class="container">
+      <span class="label">Get in touch</span>
+      <h2 style="margin-top: 1rem; margin-bottom: 1rem;">Let's make something together.</h2>
+      <p class="prose-wide" style="color: var(--color-muted); max-width: 48ch; margin-bottom: 2rem;">
+        Tell us about your project — the occasion, the scale, the feeling you're after.
+        We'll take it from there.
+      </p>
+      <a href="mailto:flowerscan.ca@gmail.com?subject=Services%20Inquiry" class="btn btn--primary">Get in touch</a>
+      <p class="note" style="margin-top: 1.5rem;">
+        Ikebana-inspired floral design, curated for brands and events. Serving Toronto &amp; beyond.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       Footer
+  ============================================================ -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer__inner">
+      <div class="footer__main">
+        <div>
+          <div class="footer__brand">flowerscan</div>
+          <div class="footer__tagline">Toronto, ON</div>
+        </div>
+        <div class="footer__links">
+          <a href="https://instagram.com/flower.scan" class="icon-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
+            </svg>
+            flower.scan
+          </a>
+          <a href="mailto:flowerscan.ca@gmail.com" class="icon-link" aria-label="Email us">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <polyline points="2,4 12,13 22,4"/>
+            </svg>
+            flowerscan.ca@gmail.com
+          </a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        &copy; 2025 flowerscan.ca
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
