@@ -179,31 +179,39 @@
             For bouquet orders, event enquiries, or just to say hello.
           </p>
 
-          <form class="contact-form" id="contact-form" novalidate>
+          <div data-fs-success style="display:none; font-size: var(--text-sm); color: var(--color-muted); padding: 1rem 0;">
+            Message sent. We'll be in touch soon.
+          </div>
+          <div data-fs-error style="display:none; font-size: var(--text-sm); color: var(--color-muted); padding: 1rem 0;"></div>
+
+          <form class="contact-form" id="contact-form">
 
             <div class="form-row">
               <div class="form-group">
                 <label for="first-name">First Name <span class="form-required" aria-hidden="true">*</span></label>
-                <input type="text" id="first-name" name="firstName" required autocomplete="given-name">
+                <input type="text" id="first-name" name="firstName" required autocomplete="given-name" data-fs-field>
+                <span data-fs-error="firstName" style="font-size: var(--text-xs); color: var(--color-muted);"></span>
               </div>
               <div class="form-group">
                 <label for="last-name">Last Name <span class="form-required" aria-hidden="true">*</span></label>
-                <input type="text" id="last-name" name="lastName" required autocomplete="family-name">
+                <input type="text" id="last-name" name="lastName" required autocomplete="family-name" data-fs-field>
+                <span data-fs-error="lastName" style="font-size: var(--text-xs); color: var(--color-muted);"></span>
               </div>
             </div>
 
             <div class="form-group">
               <label for="email">Email <span class="form-required" aria-hidden="true">*</span></label>
-              <input type="email" id="email" name="email" required autocomplete="email">
+              <input type="email" id="email" name="email" required autocomplete="email" data-fs-field>
+              <span data-fs-error="email" style="font-size: var(--text-xs); color: var(--color-muted);"></span>
             </div>
 
             <div class="form-group">
               <label for="message">Message <span class="form-required" aria-hidden="true">*</span></label>
-              <textarea id="message" name="message" required placeholder="Tell us about your project — the occasion, scale, and feeling you're after."></textarea>
+              <textarea id="message" name="message" required placeholder="Tell us about your project — the occasion, scale, and feeling you're after." data-fs-field></textarea>
+              <span data-fs-error="message" style="font-size: var(--text-xs); color: var(--color-muted);"></span>
             </div>
 
-            <button type="submit" class="btn btn--primary" style="margin-top: 0.5rem;">Submit</button>
-            <div class="form-status" id="form-status" aria-live="polite"></div>
+            <button type="submit" class="btn btn--primary" style="margin-top: 0.5rem;" data-fs-submit-btn>Submit</button>
 
           </form>
         </div>
@@ -249,44 +257,9 @@
 
   <script src="js/main.js"></script>
   <script>
-    const form = document.getElementById('contact-form');
-    const status = document.getElementById('form-status');
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      const firstName = form.firstName.value.trim();
-      const lastName  = form.lastName.value.trim();
-      const email     = form.email.value.trim();
-      const message   = form.message.value.trim();
-
-      if (!firstName || !lastName || !email || !message) {
-        status.textContent = 'Please fill in all required fields.';
-        return;
-      }
-
-      const submitBtn = form.querySelector('[type="submit"]');
-      submitBtn.disabled = true;
-      status.textContent = 'Sending\u2026';
-
-      try {
-        const res = await fetch('/api/contact', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ firstName, lastName, email, message }),
-        });
-
-        if (res.ok) {
-          form.reset();
-          status.textContent = 'Message sent. We\'ll be in touch soon.';
-        } else {
-          throw new Error('Server error');
-        }
-      } catch {
-        status.textContent = 'Something went wrong. Email us directly at flowerscan.ca@gmail.com';
-        submitBtn.disabled = false;
-      }
-    });
+    window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+    formspree('initForm', { formElement: '#contact-form', formId: 'mgoqzdzn' });
   </script>
+  <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 </body>
 </html>
