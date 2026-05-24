@@ -24,29 +24,69 @@
       margin: 0;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
+      gap: 0 2rem;
     }
     .services-grid__item {
-      padding: 1.75rem 0;
       border-top: 1px solid var(--color-border);
     }
+    /* Contact us tile */
+    .services-grid__item--cta {
+      border-top: 1px solid var(--color-border);
+      padding: 1.75rem 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+    .services-grid__item--cta .services-grid__number {
+      margin-bottom: 0.5rem;
+    }
+
+    /* Accordion via <details> */
+    .services-grid__item details {
+      padding: 1.75rem 0;
+    }
+    .services-grid__item details summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      user-select: none;
+    }
+    .services-grid__item details summary::-webkit-details-marker { display: none; }
+    .services-grid__item details summary::marker { display: none; }
+
     .services-grid__number {
       font-size: var(--text-sm);
       letter-spacing: 0.08em;
       color: var(--color-muted);
-      margin-bottom: 0.5rem;
     }
     .services-grid__name {
       font-family: var(--font-heading);
       font-size: var(--text-xl);
       font-weight: var(--weight-light);
-      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+    .services-grid__name .toggle-icon {
+      font-size: var(--text-base);
+      color: var(--color-muted);
+      transition: transform 0.2s ease;
+      flex-shrink: 0;
+      font-style: normal;
+      font-family: var(--font-body);
+      font-weight: 300;
+    }
+    .services-grid__item details[open] .toggle-icon {
+      transform: rotate(45deg);
     }
     .services-grid__desc {
       font-size: var(--text-sm);
       color: var(--color-muted);
       line-height: 1.7;
-      margin: 0;
+      margin: 0.75rem 0 0;
     }
     @media (max-width: 768px) {
       .services-grid {
@@ -130,49 +170,75 @@
       <ul class="services-grid" role="list">
 
         <li class="services-grid__item">
-          <div class="services-grid__number">01</div>
-          <div class="services-grid__name">Brand activations</div>
-          <p class="services-grid__desc">
-            Pop-up floral bars, gifting stations, and in-store activations for product launches,
-            seasonal campaigns, and retail moments. We bring the flowers; your customers take the memory home.
-          </p>
+          <details>
+            <summary>
+              <div class="services-grid__number">01</div>
+              <div class="services-grid__name">Brand activations <span class="toggle-icon">+</span></div>
+            </summary>
+            <p class="services-grid__desc">
+              Pop-up floral bars, gifting stations, and in-store activations for product launches,
+              seasonal campaigns, and retail moments. We bring the flowers; your customers take the memory home.
+            </p>
+          </details>
         </li>
 
         <li class="services-grid__item">
-          <div class="services-grid__number">02</div>
-          <div class="services-grid__name">Corporate events</div>
-          <p class="services-grid__desc">
-            Table arrangements, reception florals, and event styling for corporate gatherings,
-            dinners, and hospitality events. Coordinated to your brand palette and setting.
-          </p>
+          <details>
+            <summary>
+              <div class="services-grid__number">02</div>
+              <div class="services-grid__name">Corporate events <span class="toggle-icon">+</span></div>
+            </summary>
+            <p class="services-grid__desc">
+              Table arrangements, reception florals, and event styling for corporate gatherings,
+              dinners, and hospitality events. Coordinated to your brand palette and setting.
+            </p>
+          </details>
         </li>
 
         <li class="services-grid__item">
-          <div class="services-grid__number">03</div>
-          <div class="services-grid__name">Installations</div>
-          <p class="services-grid__desc">
-            Larger-scale floral statements for retail windows, exhibition spaces, and branded environments.
-            Designed to photograph well and hold meaning in person.
-          </p>
+          <details>
+            <summary>
+              <div class="services-grid__number">03</div>
+              <div class="services-grid__name">Installations <span class="toggle-icon">+</span></div>
+            </summary>
+            <p class="services-grid__desc">
+              Larger-scale floral statements for retail windows, exhibition spaces, and branded environments.
+              Designed to photograph well and hold meaning in person.
+            </p>
+          </details>
         </li>
 
         <li class="services-grid__item">
-          <div class="services-grid__number">04</div>
-          <div class="services-grid__name">Corporate gifting</div>
-          <p class="services-grid__desc">
-            Custom bouquets and arrangements for client gifting, staff appreciation, and
-            brand partnerships. Individually wrapped, branded on request.
-          </p>
+          <details>
+            <summary>
+              <div class="services-grid__number">04</div>
+              <div class="services-grid__name">Corporate gifting <span class="toggle-icon">+</span></div>
+            </summary>
+            <p class="services-grid__desc">
+              Custom bouquets and arrangements for client gifting, staff appreciation, and
+              brand partnerships. Individually wrapped, branded on request.
+            </p>
+          </details>
         </li>
 
         <li class="services-grid__item">
-          <div class="services-grid__number">05</div>
-          <div class="services-grid__name">Workshops</div>
-          <p class="services-grid__desc">
-            Private ikebana-inspired workshops for teams, brand events, and client experiences.
-            Up to 12 guests. All materials provided — stems, vessels, tools.
-            <a href="workshops.html" style="color: inherit; text-decoration: underline; text-underline-offset: 3px;">See public dates.</a>
-          </p>
+          <details>
+            <summary>
+              <div class="services-grid__number">05</div>
+              <div class="services-grid__name">Workshops <span class="toggle-icon">+</span></div>
+            </summary>
+            <p class="services-grid__desc">
+              Private ikebana-inspired workshops for teams, brand events, and client experiences.
+              Up to 12 guests. All materials provided — stems, vessels, tools.
+              <a href="workshops.html" style="color: inherit; text-decoration: underline; text-underline-offset: 3px;">See public dates.</a>
+            </p>
+          </details>
+        </li>
+
+        <li class="services-grid__item services-grid__item--cta">
+          <div class="services-grid__number">06</div>
+          <div class="services-grid__name" style="margin-bottom: 1.25rem;">Work with us</div>
+          <a href="contact.html" class="btn btn--primary btn--sm">Contact us</a>
         </li>
 
       </ul>
