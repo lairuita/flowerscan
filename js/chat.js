@@ -171,13 +171,13 @@
         .then(function (res) { return res.json(); })
         .then(function (data) {
           removeTyping();
-          var reply = data.reply || data.error || 'Something went wrong. Please email flowerscan.ca@gmail.com.';
+          var reply = data.reply || data.error || 'Something went wrong. Please email hello@flowerscan.ca.';
           addMessage('bot', reply);
           if (data.reply) history.push({ role: 'assistant', content: data.reply });
         })
         .catch(function () {
           removeTyping();
-          addMessage('bot', 'Something went wrong. Please email flowerscan.ca@gmail.com.');
+          addMessage('bot', 'Something went wrong. Please email hello@flowerscan.ca.');
         })
         .finally(function () {
           isLoading = false;

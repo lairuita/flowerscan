@@ -95,7 +95,7 @@ About flowerscan:
 - Bi-weekly flower subscription called "Ikebana Box" — curated seasonal stems delivered in Toronto
 - Intimate in-person workshops: small groups, all materials included, no experience needed
 - Philosophy: wabi-sabi — quiet beauty, impermanence, natural imperfection
-- Contact: flowerscan.ca@gmail.com | Instagram: @flower.scan
+- Contact: hello@flowerscan.ca | Instagram: @flower.scan
 
 The following is live content extracted directly from the website — use this as your source of truth:
 
@@ -104,7 +104,7 @@ ${siteContext}
 To book a workshop: visit the Workshops page and use the RSVP link.
 To subscribe to Ikebana Box: visit the Ikebana Box page.
 
-Tone: Keep responses short, warm, and unhurried. Simple language. No hype. If asked something you're unsure about, suggest emailing flowerscan.ca@gmail.com.`;
+Tone: Keep responses short, warm, and unhurried. Simple language. No hype. If asked something you're unsure about, suggest emailing hello@flowerscan.ca.`;
 
   // Convert messages to Gemini format
   const contents = messages.slice(-10).map(m => ({
@@ -137,6 +137,6 @@ Tone: Keep responses short, warm, and unhurried. Simple language. No hype. If as
     res.status(200).json({ reply: text });
   } catch (error) {
     console.error('Chat error:', error);
-    res.status(500).json({ error: 'Something went wrong. Please email flowerscan.ca@gmail.com.' });
+    res.status(500).json({ error: 'Something went wrong. Please email hello@flowerscan.ca.' });
   }
 };

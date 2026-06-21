@@ -2,7 +2,7 @@
 // Vercel serverless function — contact form handler.
 //
 // POST body: { firstName, lastName, email, message }
-// Sends an email to flowerscan.ca@gmail.com via Resend.
+// Sends an email to hello@flowerscan.ca via Resend.
 
 const { Resend } = require('resend');
 
@@ -36,7 +36,7 @@ module.exports = async function handler(req, res) {
   try {
     await getResend().emails.send({
       from: 'flowerscan contact form <onboarding@resend.dev>',
-      to:   'flowerscan.ca@gmail.com',
+      to:   'hello@flowerscan.ca',
       replyTo: email,
       subject: `New message from ${firstName} ${lastName}`,
       text: [

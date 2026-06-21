@@ -90,7 +90,7 @@ function subscriptionEmailHtml(name) {
       </p>
       <p>
         Questions or changes? Email us at
-        <a href="mailto:flowerscan.ca@gmail.com" style="color: #8B7355;">flowerscan.ca@gmail.com</a>
+        <a href="mailto:hello@flowerscan.ca" style="color: #8B7355;">hello@flowerscan.ca</a>
         or visit our <a href="${process.env.YOUR_DOMAIN}/faq.html" style="color: #8B7355;">FAQ</a>.
       </p>
       <p style="margin-top: 48px; color: #9E9E8F; font-size: 13px;">
@@ -130,7 +130,7 @@ function workshopEmailHtml(name, workshopDate) {
       </ul>
       <p style="font-size: 14px; color: #9E9E8F;">
         To cancel or transfer your spot, email
-        <a href="mailto:flowerscan.ca@gmail.com" style="color: #8B7355;">flowerscan.ca@gmail.com</a>
+        <a href="mailto:hello@flowerscan.ca" style="color: #8B7355;">hello@flowerscan.ca</a>
         at least 48 hours before the session.
       </p>
       <p style="margin-top: 48px; color: #9E9E8F; font-size: 13px;">
@@ -197,14 +197,14 @@ module.exports = async function handler(req, res) {
     try {
       if (isWorkshop) {
         await getResend().emails.send({
-          from:    'Ikebana Box <flowerscan.ca@gmail.com>',
+          from:    'Ikebana Box <hello@flowerscan.ca>',
           to:      email,
           subject: `You're booked — Ikebana-Inspired Workshop ${workshopDate || ''}`,
           html:    workshopEmailHtml(name, workshopDate),
         });
       } else {
         await getResend().emails.send({
-          from:    'Ikebana Box <flowerscan.ca@gmail.com>',
+          from:    'Ikebana Box <hello@flowerscan.ca>',
           to:      email,
           subject: 'Your Ikebana Box is on its way',
           html:    subscriptionEmailHtml(name),
