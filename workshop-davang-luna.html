@@ -143,8 +143,17 @@
 
           <div style="margin-bottom: 1.75rem; padding-bottom: 1.75rem; border-bottom: 1px solid var(--color-border);">
             <div style="font-size: var(--text-sm); color: var(--color-muted); letter-spacing: 0.08em; margin-bottom: 0.5rem;">Price</div>
-            <div style="font-family: var(--font-heading); font-size: var(--text-xl); font-weight: var(--weight-light);">$85 CAD</div>
+            <div style="font-family: var(--font-heading); font-size: var(--text-xl); font-weight: var(--weight-light);">$90 CAD</div>
             <div style="font-size: var(--text-sm); color: var(--color-muted); margin-top: 0.2rem;">per person, tax included</div>
+          </div>
+
+          <!-- Buy button -->
+          <div style="margin-bottom: 1.75rem; padding-bottom: 1.75rem; border-bottom: 1px solid var(--color-border);">
+            <!-- TODO: replace buy-button-id with actual Stripe button ID -->
+            <stripe-buy-button
+              buy-button-id="PLACEHOLDER_DAVANG_LUNA"
+              publishable-key="pk_live_51T9crW4MQNh5Ckwi3lbeb7F8gIf9Kds6LMBsjLgrmqOBftwl4zLmclbgrSUBN7Zc24tmzHgnC6EG3I9tDU9p35Ng00N7vbcyAE"
+            ></stripe-buy-button>
           </div>
 
           <p style="font-size: var(--text-sm); color: var(--color-muted); line-height: 1.75; margin-bottom: 1.75rem; padding-bottom: 1.75rem; border-bottom: 1px solid var(--color-border);">
@@ -167,15 +176,6 @@
           <div style="margin-bottom: 1.75rem; padding-bottom: 1.75rem; border-bottom: 1px solid var(--color-border);">
             <div style="font-size: var(--text-sm); color: var(--color-muted); letter-spacing: 0.08em; margin-bottom: 0.5rem;">Upgrade available</div>
             <p style="font-size: var(--text-sm); color: var(--color-muted); line-height: 1.7; margin: 0;">Specialty matcha lattes — like the strawberry matcha — are available for an additional fee, ordered directly at the counter.</p>
-          </div>
-
-          <!-- Buy button -->
-          <div style="margin-bottom: 1.25rem;">
-            <!-- TODO: replace buy-button-id with actual Stripe button ID -->
-            <stripe-buy-button
-              buy-button-id="PLACEHOLDER_DAVANG_LUNA"
-              publishable-key="pk_live_51T9crW4MQNh5Ckwi3lbeb7F8gIf9Kds6LMBsjLgrmqOBftwl4zLmclbgrSUBN7Zc24tmzHgnC6EG3I9tDU9p35Ng00N7vbcyAE"
-            ></stripe-buy-button>
           </div>
 
           <p class="note">
