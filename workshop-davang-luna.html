@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ikebana-inspired floral arrangement workshop at Davang Luna, Toronto. Saturday, July 11, 5:00–6:30 pm. All materials included.">
+  <title>Workshop — Davang Luna · flowerscan</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/flowerscan-icon-transparent.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+  <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZRC0C20C1X"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZRC0C20C1X');
+  </script>
+  <style>
+    body {
+      --color-bg:     #F5F0EA;
+      --color-text:   #2C2C2C;
+      --color-muted:  #9E9E8F;
+      --color-border: #DDD8CF;
+    }
+    .workshop-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .workshop-image {
+      position: sticky;
+      top: 2rem;
+    }
+    .workshop-image img,
+    .workshop-image .img-placeholder {
+      width: 100%;
+      display: block;
+    }
+    .img-placeholder {
+      aspect-ratio: 3 / 4;
+      background: var(--color-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .includes-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .includes-list li {
+      font-size: var(--text-sm);
+      color: var(--color-muted);
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--color-border);
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+    }
+    .includes-list li::before {
+      content: "—";
+      color: var(--color-border);
+      flex-shrink: 0;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: var(--text-sm);
+      color: var(--color-muted);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+    }
+    .back-link:hover {
+      color: var(--color-text);
+    }
+    @media (max-width: 768px) {
+      .workshop-layout {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .workshop-image {
+        position: static;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo"><img src="assets/images/flowerscan-icon-transparent.svg" alt="" aria-hidden="true" class="nav__logo-icon">flowerscan</a>
+      <ul class="nav__links" role="list">
+        <li><a href="index.html" class="nav__link">Home</a></li>
+        <li><a href="bouquets.html" class="nav__link">Bouquets</a></li>
+        <li style="display:none"><a href="subscription.html" class="nav__link">Ikebana Box</a></li>
+        <li><a href="workshops.html" class="nav__link nav__link--active">Workshops</a></li>
+        <li><a href="services.html" class="nav__link">Services</a></li>
+        <li style="display:none"><a href="gallery.html" class="nav__link">Gallery</a></li>
+        <li style="display:none"><a href="about.html" class="nav__link">About</a></li>
+        <li><a href="contact.html" class="nav__link">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main content -->
+  <section class="section" style="padding-top: 2rem;">
+    <div class="container">
+
+      <a href="workshops.html" class="back-link" style="margin-bottom: 2.5rem; display: inline-flex;">
+        ← All workshops
+      </a>
+
+      <div class="workshop-layout">
+
+        <!-- Left: Image -->
+        <div class="workshop-image">
+          <!-- TODO: replace with actual event poster -->
+          <div class="img-placeholder">
+            <span style="font-size: var(--text-sm); color: var(--color-muted); letter-spacing: 0.08em;">Image coming soon</span>
+          </div>
+        </div>
+
+        <!-- Right: Details -->
+        <div>
+          <span class="label" style="display: block; margin-bottom: 1rem;">Workshop · Saturday, July 11</span>
+          <h1 style="font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: var(--weight-light); line-height: 1.15; margin-bottom: 1.5rem; max-width: 18ch;">
+            Ikebana-Inspired<br>Arrangement
+          </h1>
+
+          <a href="https://maps.app.goo.gl/VkPpHqXjLqKkUwZy5" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit; display: block; margin-bottom: 1.75rem; padding-bottom: 1.75rem; border-bottom: 1px solid var(--color-border);">
+            <div style="font-family: var(--font-heading); font-size: var(--text-lg); font-weight: var(--weight-light);">Davang Luna</div>
+            <div style="font-size: var(--text-sm); color: var(--color-muted); margin-top: 0.25rem;">163 Sterling Rd, Toronto</div>
+          </a>
+
+          <div style="margin-bottom: 1.75rem; padding-bottom: 1.75rem; border-bottom: 1px solid var(--color-border);">
+            <div style="font-size: var(--text-sm); color: var(--color-muted); letter-spacing: 0.08em; margin-bottom: 0.5rem;">Date & time</div>
+            <div style="font-family: var(--font-heading); font-size: var(--text-lg); font-weight: var(--weight-light);">Saturday, July 11</div>
+            <div style="font-size: var(--text-sm); color: var(--color-muted); margin-top: 0.25rem;">5:00 – 6:30 pm</div>
+          </div>
+
+          <div style="margin-bottom: 1.75rem; padding-bottom: 1.75rem; border-bottom: 1px solid var(--color-border);">
+            <div style="font-size: var(--text-sm); color: var(--color-muted); letter-spacing: 0.08em; margin-bottom: 0.5rem;">Price</div>
+            <div style="font-family: var(--font-heading); font-size: var(--text-xl); font-weight: var(--weight-light);">$85 CAD</div>
+            <div style="font-size: var(--text-sm); color: var(--color-muted); margin-top: 0.2rem;">per person, tax included</div>
+          </div>
+
+          <p style="font-size: var(--text-sm); color: var(--color-muted); line-height: 1.75; margin-bottom: 1.75rem; padding-bottom: 1.75rem; border-bottom: 1px solid var(--color-border);">
+            A hands-on introduction to ikebana-inspired arrangement. We'll work through the principles of line, negative space, and seasonal material — then build an arrangement you take home. No experience necessary. Groups are kept small so there's room to slow down and look.
+          </p>
+
+          <!-- What's included -->
+          <div style="margin-bottom: 1.75rem; padding-bottom: 1.75rem; border-bottom: 1px solid var(--color-border);">
+            <div style="font-size: var(--text-sm); color: var(--color-muted); letter-spacing: 0.08em; margin-bottom: 0.75rem;">What's included</div>
+            <ul class="includes-list">
+              <li>Seasonal stems and foliage</li>
+              <li>Kenzan, vessel, and clippers provided</li>
+              <li>Guided instruction throughout</li>
+              <li>Your arrangement to take home</li>
+            </ul>
+          </div>
+
+          <!-- Buy button -->
+          <div style="margin-bottom: 1.25rem;">
+            <!-- TODO: replace buy-button-id with actual Stripe button ID -->
+            <stripe-buy-button
+              buy-button-id="PLACEHOLDER_DAVANG_LUNA"
+              publishable-key="pk_live_51T9crW4MQNh5Ckwi3lbeb7F8gIf9Kds6LMBsjLgrmqOBftwl4zLmclbgrSUBN7Zc24tmzHgnC6EG3I9tDU9p35Ng00N7vbcyAE"
+            ></stripe-buy-button>
+          </div>
+
+          <p class="note">
+            Tickets are non-refundable. If you can no longer attend, email <a href="mailto:hello@flowerscan.ca">hello@flowerscan.ca</a> and we'll do our best to help.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" style="margin: 0; border-top: 1px solid var(--color-border);">
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer__inner">
+      <div class="footer__main">
+        <div>
+          <div class="footer__brand">flowerscan</div>
+          <div class="footer__tagline">Toronto | ikebana-inspired floral design for discerning brands and occasions.</div>
+        </div>
+        <div class="footer__links">
+          <a href="https://instagram.com/flower.scan" class="icon-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
+            </svg>
+            flower.scan
+          </a>
+          <a href="mailto:hello@flowerscan.ca" class="icon-link" aria-label="Email us">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <polyline points="2,4 12,13 22,4"/>
+            </svg>
+            hello@flowerscan.ca
+          </a>
+        </div>
+      </div>
+      <div class="footer__bottom">&copy; 2025 flowerscan.ca</div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/chat.js"></script>
+</body>
+</html>
