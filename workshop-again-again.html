@@ -32,12 +32,48 @@
       align-items: start;
     }
     .workshop-image {
-      position: static;
+      position: sticky;
+      top: 2rem;
     }
-    .workshop-image img,
-    .workshop-image .img-placeholder {
+    .media-scroll {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      gap: 0;
+      scrollbar-width: none;
+    }
+    .media-scroll::-webkit-scrollbar {
+      display: none;
+    }
+    .media-scroll__item {
+      min-width: 100%;
+      scroll-snap-align: start;
+    }
+    .media-scroll__item img,
+    .media-scroll__item video {
       width: 100%;
       display: block;
+      filter: saturate(0.75);
+    }
+    .media-scroll__item video {
+      filter: none;
+    }
+    .media-scroll__dots {
+      display: flex;
+      gap: 0.4rem;
+      margin-top: 0.75rem;
+      justify-content: center;
+    }
+    .media-scroll__dots span {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--color-border);
+      transition: background 0.2s;
+    }
+    .media-scroll__dots span.active {
+      background: var(--color-muted);
     }
     .img-placeholder {
       aspect-ratio: 3 / 4;
@@ -169,12 +205,17 @@
 
       <div class="workshop-layout">
 
-        <!-- Left: Images & Video -->
+        <!-- Left: Scrollable gallery -->
         <div class="workshop-image">
-          <img src="assets/againagain/ikebana_1.webp" alt="Ikebana 101 workshop at Again Again, July 5" style="filter: saturate(0.75); margin-bottom: 1.5rem;">
-          <img src="assets/againagain/ikebana_2.webp" alt="Ikebana arrangement — Again Again workshop" style="width: 100%; display: block; filter: saturate(0.75); margin-bottom: 1.5rem;">
-          <img src="assets/againagain/ikebana_3.webp" alt="Ray, artist and founder of Flowerscan" style="width: 100%; display: block; filter: saturate(0.75); margin-bottom: 1.5rem;">
-          <video src="assets/againagain/video.mp4" controls muted playsinline style="width: 100%; display: block;"></video>
+          <div class="media-scroll" id="media-scroll">
+            <div class="media-scroll__item"><img src="assets/againagain/ikebana_1.webp" alt="Ikebana 101 workshop at Again Again, July 5"></div>
+            <div class="media-scroll__item"><img src="assets/againagain/ikebana_2.webp" alt="Ikebana arrangement — Again Again workshop"></div>
+            <div class="media-scroll__item"><img src="assets/againagain/ikebana_3.webp" alt="Ray, artist and founder of Flowerscan"></div>
+            <div class="media-scroll__item"><video src="assets/againagain/video.mp4" controls muted playsinline></video></div>
+          </div>
+          <div class="media-scroll__dots" id="media-dots">
+            <span class="active"></span><span></span><span></span><span></span>
+          </div>
         </div>
 
         <!-- Right: Details -->
@@ -334,5 +375,13 @@
 
   <script src="js/main.js"></script>
   <script src="js/chat.js"></script>
+  <script>
+    const scroll = document.getElementById('media-scroll');
+    const dots = document.querySelectorAll('#media-dots span');
+    scroll.addEventListener('scroll', () => {
+      const index = Math.round(scroll.scrollLeft / scroll.offsetWidth);
+      dots.forEach((d, i) => d.classList.toggle('active', i === index));
+    }, { passive: true });
+  </script>
 </body>
 </html>
