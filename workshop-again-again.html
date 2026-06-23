@@ -121,6 +121,12 @@
       border-color: var(--color-accent);
       color: var(--color-bg);
     }
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      align-items: start;
+    }
     @media (max-width: 768px) {
       .workshop-layout {
         grid-template-columns: 1fr;
@@ -128,6 +134,9 @@
       }
       .workshop-image {
         position: static;
+      }
+      .media-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -163,7 +172,7 @@
 
         <!-- Left: Image -->
         <div class="workshop-image">
-          <img src="assets/againagain/ikebana_2.webp" alt="Ikebana arrangement — Again Again workshop, July 5" style="filter: saturate(0.75);">
+          <img src="assets/againagain/ikebana_1.webp" alt="Ikebana 101 workshop at Again Again, July 5" style="filter: saturate(0.75);">
         </div>
 
         <!-- Right: Details -->
@@ -235,8 +244,8 @@
   <!-- Photos & Video -->
   <section class="section section--sm">
     <div class="container">
-      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; align-items: start;">
-        <img src="assets/againagain/ikebana_1.webp" alt="Ikebana 101 workshop" style="width: 100%; display: block; filter: saturate(0.75);">
+      <div class="media-grid">
+        <img src="assets/againagain/ikebana_2.webp" alt="Ikebana arrangement — Again Again workshop" style="width: 100%; display: block; filter: saturate(0.75);">
         <img src="assets/againagain/ikebana_3.webp" alt="Ray, artist and founder of Flowerscan" style="width: 100%; display: block; filter: saturate(0.75);">
         <video src="assets/againagain/video.mp4" controls muted playsinline style="width: 100%; display: block;"></video>
       </div>
