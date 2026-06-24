@@ -279,7 +279,7 @@ p.prose-wide {
 .nav__logo-icon {
   height: 1.8em;
   width: auto;
-  filter: invert(1);
+  filter: brightness(0) invert(1);
 }
 
 .nav__logo:hover {
