@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Order custom bouquets and ikebana-inspired arrangements from flowerscan — seasonal stems, made by hand in Toronto.">
+  <title>Order Flowers — flowerscan</title>
+  <link rel="icon" type="image/png" href="assets/logo/flowerscan_dark.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZRC0C20C1X"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZRC0C20C1X');
+  </script>
+  <style>
+    .tier-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border: 1px solid var(--color-border);
+      margin-bottom: 2rem;
+    }
+    .tier-card {
+      padding: 1.5rem;
+      border-right: 1px solid var(--color-border);
+    }
+    .tier-card:last-child {
+      border-right: none;
+    }
+    .tier-card__name {
+      font-family: var(--font-heading);
+      font-size: var(--text-lg);
+      font-weight: var(--weight-light);
+      margin-bottom: 0.3rem;
+    }
+    .tier-card__price {
+      font-size: var(--text-sm);
+      color: var(--color-muted);
+      margin-bottom: 0.75rem;
+    }
+    .tier-card__desc {
+      font-size: var(--text-sm);
+      color: var(--color-muted);
+      line-height: 1.6;
+      margin: 0;
+    }
+    .photo-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .photo-pair img,
+    .photo-single img {
+      width: 100%;
+      display: block;
+      filter: saturate(0.75);
+    }
+    .photo-single {
+      margin-top: 1.5rem;
+    }
+    .order-form {
+      max-width: 640px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+    .form-group label {
+      display: block;
+      font-size: var(--text-sm);
+      color: var(--color-muted);
+      letter-spacing: 0.06em;
+      margin-bottom: 0.4rem;
+    }
+    .form-group select,
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      background: transparent;
+      border: 1px solid var(--color-border);
+      color: var(--color-text);
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      padding: 0.65rem 0.75rem;
+      outline: none;
+      appearance: none;
+      -webkit-appearance: none;
+      border-radius: 0;
+      box-sizing: border-box;
+    }
+    .form-group select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239E9E8F' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.75rem center;
+      padding-right: 2.25rem;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: var(--color-border);
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--color-muted);
+    }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    .form-required {
+      color: var(--color-accent);
+      margin-left: 0.2rem;
+    }
+    .form-status {
+      font-size: var(--text-sm);
+      color: var(--color-muted);
+      margin-top: 0.75rem;
+      display: none;
+    }
+    .form-status.visible { display: block; }
+
+    @media (max-width: 640px) {
+      .tier-grid { grid-template-columns: 1fr; }
+      .tier-card { border-right: none; border-bottom: 1px solid var(--color-border); }
+      .tier-card:last-child { border-bottom: none; }
+      .photo-pair { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .tier-grid { grid-template-columns: 1fr; }
+      .tier-card { border-right: none; border-bottom: 1px solid var(--color-border); }
+      .tier-card:last-child { border-bottom: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo"><img src="assets/logo/flowerscan-mark-light-transparent.png" alt="" aria-hidden="true" class="nav__logo-icon">flowerscan</a>
+      <ul class="nav__links" role="list">
+        <li><a href="index.html" class="nav__link">Home</a></li>
+        <li><a href="order-flowers.html" class="nav__link nav__link--active">Order Flowers</a></li>
+        <li style="display:none"><a href="subscription.html" class="nav__link">Ikebana Box</a></li>
+        <li><a href="workshops.html" class="nav__link">Workshops</a></li>
+        <li><a href="services.html" class="nav__link">Services</a></li>
+        <li style="display:none"><a href="gallery.html" class="nav__link">Gallery</a></li>
+        <li style="display:none"><a href="about.html" class="nav__link">About</a></li>
+        <li><a href="contact.html" class="nav__link">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero hero--minimal" aria-labelledby="order-heading" style="padding-bottom: 2rem;">
+    <div class="container">
+      <span class="label">Custom flowers · Toronto</span>
+      <h1 id="order-heading" style="margin-top: 1rem; margin-bottom: 1.25rem; max-width: 20ch;">
+        Order flowers.
+      </h1>
+      <p class="hero__subtitle" style="margin-bottom: 0; max-width: 50ch;">
+        Seasonal stems arranged with intention — each piece made to order.
+        Choose a hand-tied bouquet or an ikebana-inspired arrangement.
+      </p>
+    </div>
+  </section>
+
+  <hr class="divider" style="margin: 0; border-top: 1px solid var(--color-border);">
+
+  <!-- Bouquets section -->
+  <section class="section" aria-labelledby="bouquets-heading" style="padding-bottom: 2rem;">
+    <div class="container">
+      <span class="label">Hand-tied</span>
+      <h2 id="bouquets-heading" style="margin-top: 1rem; margin-bottom: 0.75rem;">Bouquets.</h2>
+      <p class="prose-wide" style="margin-bottom: 2rem; max-width: 52ch;">
+        Wrapped and ready to gift. We source seasonal stems around your colour palette and occasion — no filler, no generic arrangements.
+      </p>
+
+      <div class="tier-grid">
+        <div class="tier-card">
+          <div class="tier-card__name">Petite</div>
+          <div class="tier-card__price">from $180</div>
+          <p class="tier-card__desc">A compact, focused arrangement. Ideal for everyday gifting or a personal treat.</p>
+        </div>
+        <div class="tier-card">
+          <div class="tier-card__name">Grande</div>
+          <div class="tier-card__price">from $280</div>
+          <p class="tier-card__desc">Fuller volume and variety. The go-to for birthdays, anniversaries, and celebrations.</p>
+        </div>
+        <div class="tier-card">
+          <div class="tier-card__name">Luxe</div>
+          <div class="tier-card__price">from $380</div>
+          <p class="tier-card__desc">A statement piece. Rare stems, generous scale, and considered negative space.</p>
+        </div>
+      </div>
+
+      <div class="photo-single">
+        <img src="assets/bouquets/b1.JPG" alt="Custom bouquet by flowerscan">
+      </div>
+      <div class="photo-pair">
+        <img src="assets/bouquets/graduation1.JPG" alt="Takarazuka graduation bouquet">
+        <img src="assets/bouquets/graduation2.JPG" alt="Takarazuka graduation bouquet">
+      </div>
+      <div style="font-size: var(--text-sm); color: var(--color-muted); margin-top: 0.6rem; letter-spacing: 0.04em;">Takarazuka Graduation Bouquet</div>
+    </div>
+  </section>
+
+  <hr class="divider" style="margin: 0; border-top: 1px solid var(--color-border);">
+
+  <!-- Arrangements section -->
+  <section class="section" aria-labelledby="arrangements-heading" style="padding-bottom: 2rem;">
+    <div class="container">
+      <span class="label">Ikebana-inspired</span>
+      <h2 id="arrangements-heading" style="margin-top: 1rem; margin-bottom: 0.75rem;">Arrangements.</h2>
+      <p class="prose-wide" style="margin-bottom: 2rem; max-width: 52ch;">
+        Stems placed in a vessel — line, space, and seasonal material working together. Designed to live on a table, shelf, or entryway.
+      </p>
+
+      <div class="tier-grid" style="grid-template-columns: repeat(2, 1fr);">
+        <div class="tier-card">
+          <div class="tier-card__name">Tabletop</div>
+          <div class="tier-card__price">from $220</div>
+          <p class="tier-card__desc">A composed, intimate arrangement. Works in a low vessel or kenzan. Suited for dining tables and shelves.</p>
+        </div>
+        <div class="tier-card">
+          <div class="tier-card__name">Statement</div>
+          <div class="tier-card__price">from $360</div>
+          <p class="tier-card__desc">Tall lines and considered material. Built to anchor a room — entryways, reception desks, mantels.</p>
+        </div>
+      </div>
+
+      <div class="photo-pair">
+        <img src="assets/extrapics/P3.jpg" alt="Ikebana-inspired arrangement by flowerscan">
+        <img src="assets/extrapics/P4.JPG" alt="Ikebana arrangement by flowerscan">
+      </div>
+
+      <p class="note" style="margin-top: 1.5rem;">
+        Need arrangements for an event or brand activation?
+        <a href="services.html">See our services.</a>
+      </p>
+    </div>
+  </section>
+
+  <hr class="divider" style="margin: 0; border-top: 1px solid var(--color-border);">
+
+  <!-- Order form -->
+  <section class="section" aria-labelledby="form-heading">
+    <div class="container">
+      <span class="label">Place an order</span>
+      <h2 id="form-heading" style="margin-top: 1rem; margin-bottom: 0.5rem;">Ready when you are.</h2>
+      <p class="prose-wide" style="margin-bottom: 2.5rem; max-width: 50ch;">
+        Fill in the form and we'll confirm availability and details within 24 hours. Images below are reference — every piece is made to order.
+      </p>
+
+      <form class="order-form" id="order-form" novalidate>
+
+        <div class="form-group">
+          <label for="order-type">Type <span class="form-required" aria-hidden="true">*</span></label>
+          <select id="order-type" name="type" required>
+            <option value="" disabled selected>Select a type</option>
+            <optgroup label="Bouquets — hand-tied">
+              <option value="Bouquet — Petite (from $180)">Bouquet — Petite (from $180)</option>
+              <option value="Bouquet — Grande (from $280)">Bouquet — Grande (from $280)</option>
+              <option value="Bouquet — Luxe (from $380)">Bouquet — Luxe (from $380)</option>
+            </optgroup>
+            <optgroup label="Arrangements — ikebana-inspired">
+              <option value="Arrangement — Tabletop (from $220)">Arrangement — Tabletop (from $220)</option>
+              <option value="Arrangement — Statement (from $360)">Arrangement — Statement (from $360)</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="order-first">First Name <span class="form-required" aria-hidden="true">*</span></label>
+            <input type="text" id="order-first" name="first_name" required autocomplete="given-name">
+          </div>
+          <div class="form-group">
+            <label for="order-last">Last Name <span class="form-required" aria-hidden="true">*</span></label>
+            <input type="text" id="order-last" name="last_name" required autocomplete="family-name">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="order-email">Email <span class="form-required" aria-hidden="true">*</span></label>
+          <input type="email" id="order-email" name="email" required autocomplete="email" placeholder="hello@example.com">
+        </div>
+
+        <div class="form-group">
+          <label for="order-date">Preferred Date <span class="form-required" aria-hidden="true">*</span></label>
+          <input type="date" id="order-date" name="preferred_date" required>
+        </div>
+
+        <div class="form-group">
+          <label for="order-occasion">Occasion</label>
+          <input type="text" id="order-occasion" name="occasion" placeholder="e.g. birthday, anniversary, gift…">
+        </div>
+
+        <div class="form-group">
+          <label for="order-notes">Design Preferences</label>
+          <textarea id="order-notes" name="design_preferences" placeholder="Colour palette, stems you love or want to avoid, overall feel…"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn--primary" style="margin-top: 0.25rem;">Send order request</button>
+        <p class="form-status" id="order-status" role="status" aria-live="polite"></p>
+      </form>
+
+      <p class="note" style="margin-top: 2rem; max-width: 46ch;">
+        *This is an order request, not a confirmed booking. We'll reach out within 24 hours to confirm availability, pricing, and pickup or delivery details. No payment is collected until everything is agreed.
+      </p>
+    </div>
+  </section>
+
+  <hr class="divider" style="margin: 0; border-top: 1px solid var(--color-border);">
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer__inner">
+      <div class="footer__main">
+        <div>
+          <div class="footer__brand">flowerscan</div>
+          <div class="footer__tagline">Toronto | ikebana-inspired floral design for discerning brands and occasions.</div>
+        </div>
+        <div class="footer__links">
+          <a href="https://instagram.com/flower.scan" class="icon-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
+            </svg>
+            flower.scan
+          </a>
+          <a href="mailto:hello@flowerscan.ca" class="icon-link" aria-label="Email us">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <polyline points="2,4 12,13 22,4"/>
+            </svg>
+            hello@flowerscan.ca
+          </a>
+        </div>
+      </div>
+      <div class="footer__bottom">&copy; 2025 flowerscan.ca</div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/chat.js"></script>
+  <script>
+    window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+    formspree('initForm', { formElement: '#order-form', formId: 'mgoqzdzn' });
+  </script>
+  <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+  <script>
+    // Show status message after Formspree submission
+    const form = document.getElementById('order-form');
+    const status = document.getElementById('order-status');
+    if (form) {
+      form.addEventListener('submit', function () {
+        setTimeout(function () {
+          const submitted = form.dataset.fsSubmitted;
+          if (submitted) {
+            status.textContent = "Thanks — we'll be in touch within 24 hours.";
+            status.classList.add('visible');
+          }
+        }, 800);
+      });
+    }
+  </script>
+</body>
+</html>
